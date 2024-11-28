@@ -42,230 +42,67 @@ button[disabled] {
     display: block;
 }
 
-/* Overlay for Hangman Game Modal */
-.hangman-game-modal {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: opacity 0.4s ease;
-}
-
-.hangman-game-modal.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Content Blocks */
-.minigame-content,
-.hangman-content {
-    max-width: 850px;
-    margin: auto;
-    padding: 30px;
-}
-
-.hangman-content {
+/* Number Guesser Game Modal */
+.guess-wrapper {
+    padding: 30px 40px;
+    border-radius: 12px;
+    background: #fff;
     text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Close Button Styling */
-.close-btn,
-.hangman-play-again {
-    background-color: #f44336;
+.guess-wrapper #guess-section {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+}
+
+.guess-wrapper p {
+    color: #333;
+    margin-top: 10px;
+}
+
+.guess-wrapper .guess-input-field {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.guess-input-field input,
+.guess-input-field button {
+    height: 50px;
+    width: calc(100% / 2 - 20px);
+    outline: none;
+    padding: 0 20px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.guess-input-field input {
+    text-align: center;
+    color: #707070;
+    width: 110px;
+    border: 1px solid #aaa;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    display: none;
+}
+
+.guess-input-field input:disabled {
+    cursor: not-allowed;
+}
+
+.guess-input-field button {
+    border: none;
+    background: #4a98f7;
     color: #fff;
-    margin-top: 20px;
-}
-.close-btn:hover {
-    background-color: #d32f2f;
-}
-
-/* Hangman Game Styling */
-.hangman-container {
-    display: flex;
-    gap: 70px;
-    padding: 60px 40px;
-    align-items: flex-end;
-    justify-content: space-between;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.hangman-box img {
-    user-select: none;
-    max-width: 270px;
-}
-.hangman-box h1 {
-    font-size: 1.45rem;
-    margin-top: 20px;
-    text-transform: uppercase;
-}
-
-/* Word and Keyboard */
-.hangman-word-display,
-.hangman-keyboard {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-.hangman-word-display .letter {
-    width: 28px;
-    font-size: 2rem;
-    text-align: center;
-    font-weight: 600;
-    border-bottom: 3px solid #000;
-}
-.hangman-word-display .letter.guessed {
-    border-color: transparent;
-}
-.hangman-keyboard button {
-    width: calc(100% / 9 - 5px);
-    padding: 7px;
-}
-
-/* Text Styling */
-.hangman-game-box h4,
-.hangman-game-modal h4,
-.hangman-game-modal p {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-.hangman-game-modal h4 {
-    font-size: 1.53rem;
-}
-.hangman-game-modal p b {
-    color: #5E63BA;
-}
-
-/* Responsive Design */
-@media (max-width: 782px) {
-    .hangman-container {
-        flex-direction: column;
-        padding: 30px 15px;
-        align-items: center;
-    }
-    .hangman-box img {
-        max-width: 200px;
-    }
-    .hangman-box h1 {
-        display: none;
-    }
-    .hangman-word-display .letter {
-        font-size: 1.7rem;
-    }
-    .hangman-game-modal img {
-        max-width: 120px;
-    }
-}
-
-/* **MATCHING CARDS STYLING** */
-
-
-
-.matching-cards-btn {
-    background: #282A3A;
-    color: #FFF;
-    border-radius: 5px;
-    padding: 10px 20px;
-    border: 0;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.matching-cards-disabled {
-    color: #757575;
-}
-
-.matching-cards-stats {
-    color: #FFF;
-    font-size: 14pt;
-}
-
-.matching-cards-board-container {
-    position: relative;
-}
-
-.matching-cards-board,
-.matching-cards-win {
-    border-radius: 5px;
-    box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
-    background: linear-gradient(135deg,  #6f00fc 0%,#fc7900 50%,#fcc700 100%);
-    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    backface-visibility: hidden;
-}
-
-.matching-cards-board {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-gap: 20px;
-}
-
-.matching-cards-board-container.matching-cards-flipped .matching-cards-board {
-    transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.matching-cards-board-container.matching-cards-flipped .matching-cards-win {
-    transform: rotateY(0) rotateZ(0);
-}
-
-.matching-cards-card {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-}
-
-.matching-cards-card-front,
-.matching-cards-card-back {
-    position: absolute;
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    background: #282A3A;
-    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    backface-visibility: hidden;
-}
-
-.matching-cards-card-back {
-    transform: rotateY(180deg) rotateZ(50deg);
-    font-size: 28pt;
-    user-select: none;
-    text-align: center;
-    line-height: 100px;
-    background: #FDF8E6;
-}
-
-.matching-cards-card.flipped .card-front {
-    transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.matching-cards-card.flipped .card-back {
-    transform: rotateY(0) rotateZ(0);
-}
-
-.matching-cards-win {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: #FDF8E6;
-    transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.matching-cards-win-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 21pt;
-    color: #282A3A;
-}
-
-.matching-cards-highlight {
-    color: #6f00fc;
+.guess-input-field button:active {
+    transform: scale(0.97);
 }

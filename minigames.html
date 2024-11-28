@@ -17,25 +17,14 @@
         <!--Hangman Game From https://www.codingnepalweb.com/build-hangman-game-html-javascript/-->
         <div class="minigame" id="game1">
             <div class="minigame-content">
-                <div class="hangman-modal">
-                    <div class="hangman-content">
-                        <h4>Game Over!</h4>
-                        <p>The correct word was: <b>rainbow</b></p>
-                        <button class="hangman-play-again">Play Again</button>
+                <div class="guess-wrapper">
+                    <section id="guess-section">Guess a number from 1 to 100</section>
+                    <p class="guess"></p>
+                    <div class="guess-input-field">
+                        <input class="guess-input" type="number" />
+                        <button class="guess-btn">Check</button>
                     </div>
-                </div>
-                <div class="hangman-container">
-                    <div class="hangman-box">
-                        <img src="assets/minigame-images/hangman-images/hangman-0.webp" draggable="false"
-                            alt="hangman-img">
-                        <h1>Hangman Game</h1>
-                    </div>
-                    <div class="hangman-game-box">
-                        <ul class="hangman-word-display"></ul>
-                        <h4 class="hangman-hint-text">Hint: <b></b></h4>
-                        <h4 class="hangman-guesses-text">Incorrect guesses: <b></b></h4>
-                        <div class="hangman-keyboard"></div>
-                    </div>
+                    <p>You have <span class="guess-chances">10</span> chances</p>
                 </div>
                 <button class="close-btn">Close</button>
             </div>
