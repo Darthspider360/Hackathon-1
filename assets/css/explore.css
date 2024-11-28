@@ -15,3 +15,38 @@
     border-color: red;
 }
 
+.carousel {
+    position: relative;
+    text-align: center;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#carousel-left {
+    left: 0;
+}
+
+#carousel-right {
+    right: 0;
+}
+
+#carousel-up {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+#carousel-down {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+}
+

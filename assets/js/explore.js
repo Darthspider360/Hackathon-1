@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const exploreButton = document.getElementById('explore-button');
-    const carouselImages = document.querySelectorAll('.carousel-image');
+    const carouselImage = document.querySelector('.carousel-image');
     const imagePaths = [
         'assets/images/mt/mt-1-center path-top-cloggy.png',
         'assets/images/mt/mt-2-center path-top-sunny.png',
@@ -12,52 +12,44 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/images/mt/mt-8-round path-mid-tree.png',
         'assets/images/mt/mt-9-side path-mid-no habitation.png',
         'assets/images/mt/mt-10-side path-mid-no habitation.png',
-
-        
-        
-        
-        
-        
         // Add more image paths as needed
     ];
-    let currentPosition = { row: 1, col: 1 };
+    let currentPosition = 0;
 
-    exploreButton.addEventListener('click', () => {
-        carouselImages.forEach(img => {
-            const randomIndex = Math.floor(Math.random() * imagePaths.length);
-            img.src = imagePaths[randomIndex];
-        });
-    });
+    const loadImages = () => {
+        const usedIndices = new Set();
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * imagePaths.length);
+        } while (usedIndices.has(randomIndex));
+        usedIndices.add(randomIndex);
+        carouselImage.src = imagePaths[randomIndex];
+    };
+
+    exploreButton.addEventListener('click', loadImages);
 
     const moveCarousel = (direction) => {
         switch (direction) {
             case 'left':
-                if (currentPosition.col > 0) currentPosition.col--;
+            case 'up':
+                if (currentPosition > 0) currentPosition--;
                 break;
             case 'right':
-                if (currentPosition.col < 2) currentPosition.col++;
-                break;
-            case 'up':
-                if (currentPosition.row > 0) currentPosition.row--;
-                break;
             case 'down':
-                if (currentPosition.row < 2) currentPosition.row++;
+                if (currentPosition < imagePaths.length - 1) currentPosition++;
                 break;
         }
         updateCarousel();
     };
 
     const updateCarousel = () => {
-        const index = currentPosition.row * 3 + currentPosition.col;
-        carouselImages.forEach((img, i) => {
-            img.classList.toggle('active', i === index);
-        });
+        carouselImage.src = imagePaths[currentPosition];
     };
 
-    document.querySelector('.carousel-button.left').addEventListener('click', () => moveCarousel('left'));
-    document.querySelector('.carousel-button.right').addEventListener('click', () => moveCarousel('right'));
-    document.querySelector('.carousel-button.up').addEventListener('click', () => moveCarousel('up'));
-    document.querySelector('.carousel-button.down').addEventListener('click', () => moveCarousel('down'));
+    document.getElementById('carousel-left').addEventListener('click', () => moveCarousel('left'));
+    document.getElementById('carousel-right').addEventListener('click', () => moveCarousel('right'));
+    document.getElementById('carousel-up').addEventListener('click', () => moveCarousel('up'));
+    document.getElementById('carousel-down').addEventListener('click', () => moveCarousel('down'));
 
     document.addEventListener('keydown', (event) => {
         switch (event.key) {
@@ -75,4 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
     });
+
+    // Load images when the page is loaded
+    loadImages();
 });
