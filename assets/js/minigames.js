@@ -159,11 +159,11 @@ function initialiseHangmanGame(hangmanModal) {
 
 const selectors = {
     boardContainer: document.querySelector('.matching-cards-board-container'),
-    board: document.querySelector('..matching-cards-board'),
-    moves: document.querySelector('..matching-cards-moves'),
-    timer: document.querySelector('..matching-cards-timer'),
-    start: document.querySelector('..matching-cards-btn'),
-    win: document.querySelector('..matching-cards-win')
+    board: document.querySelector('.matching-cards-board'),
+    moves: document.querySelector('.matching-cards-moves'),
+    timer: document.querySelector('.matching-cards-timer'),
+    start: document.querySelector('.matching-cards-btn'),
+    win: document.querySelector('.matching-cards-win')
 }
 
 const state = {
