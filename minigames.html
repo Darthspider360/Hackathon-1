@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/minigames.css">
+    <!-- FontAweome CDN Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Mini-Games</title>
 </head>
+
 <body>
     <main>
         <button id="show-minigame-btn">Show Random Game</button>
@@ -13,34 +17,48 @@
         <!--Hangman Game From https://www.codingnepalweb.com/build-hangman-game-html-javascript/-->
         <div class="minigame" id="game1">
             <div class="minigame-content">
-                <div class="hangman-modal">
-                    <div class="hangman-content">
-                        <img src="#" alt="gif">
-                        <h4>Game Over!</h4>
-                        <p>The correct word was: <b>rainbow</b></p>
-                        <button class="hangman-play-again">Play Again</button>
+                <div class="guess-wrapper">
+                    <section id="guess-section">Guess a number from 1 to 100</section>
+                    <p class="guess"></p>
+                    <div class="guess-input-field">
+                        <input class="guess-input" type="number" />
+                        <button class="guess-btn">Check</button>
                     </div>
-                </div>
-                <div class="hangman-container">
-                    <div class="hangman-box">
-                        <img src="#" draggable="false" alt="hangman-img">
-                        <h1>Hangman Game</h1>
-                    </div>
-                    <div class="hangman-game-box">
-                        <ul class="hangman-word-display"></ul>
-                        <h4 class="hangman-hint-text">Hint: <b></b></h4>
-                        <h4 class="hangman-guesses-text">Incorrect guesses: <b></b></h4>
-                        <div class="hangman-keyboard"></div>
-                    </div>
+                    <p>You have <span class="guess-chances">10</span> chances</p>
                 </div>
                 <button class="close-btn">Close</button>
             </div>
         </div>
 
         <div class="minigame" id="game2">
-            <div class="minigame-content">
-                <h2>Game 2</h2>
-                <p>Instructions</p>
+            <section class="rps-container">
+                <div class="rps-result_field">
+                    <div class="rps-result_images">
+                        <span class="rps-user_result">
+                            <img src="images/rock.png" alt="" />
+                        </span>
+                        <span class="rps-cpu_result">
+                            <img src="images/rock.png" alt="" />
+                        </span>
+                    </div>
+                    <div class="rps-result">Play</div>
+                </div>
+                <div class="rps-option_images">
+                    <span class="rps-option_image">
+                        <img src="images/rock.png" alt="" />
+                        <p>Rock</p>
+                    </span>
+                    <span class="rps-option_image">
+                        <img src="images/paper.png" alt="" />
+                        <p>Paper</p>
+                    </span>
+                    <span class="rps-option_image">
+                        <img src="images/scissors.png" alt="" />
+                        <p>Scissors</p>
+                    </span>
+                </div>
+            </section>
+
                 <button class="close-btn">Close</button>
             </div>
         </div>
@@ -70,6 +88,9 @@
         </div>
     </main>
 
+    <!--Questions and Options only -->
+    <script src="js/questions.js"></script>
     <script src="assets/js/minigames.js"></script>
 </body>
+
 </html>
