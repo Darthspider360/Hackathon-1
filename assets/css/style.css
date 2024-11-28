@@ -1,0 +1,22 @@
+/* General styles */
+
+/* General styles */
+
+body{
+    background-color: #f7f4da;
+}
+
+
+
+.navbar-custom {
+    color: #353b3c;
+    background-color:#eedd9966!important;
+}
+
+#main-map img {
+    height: 100%;
+    width: 100%;
+  }
+  
+
+
