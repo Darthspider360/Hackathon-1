@@ -43,61 +43,15 @@
 
         <div class="minigame" id="game2">
             <div class="minigame-content">
-                <!-- start Quiz button -->
-                <div class="start_btn"><button>Start Quiz</button></div>
-                <!-- Info Box -->
-                <div class="quiz-info_box">
-                    <div class="quiz-info-title"><span>Some Rules of this Quiz</span></div>
-                    <div class="quiz-info-list">
-                        <div class="quiz-info">1. You will have only <span>15 seconds</span> per each question.</div>
-                        <div class="quiz-info">2. Once you select your answer, it can't be undone.</div>
-                        <div class="quiz-info">3. You can't select any option once time goes off.</div>
-                        <div class="quiz-info">4. You can't exit from the Quiz while you're playing.</div>
-                        <div class="quiz-info">5. You'll get points on the basis of your correct answers.</div>
-                    </div>
-                    <div class="quiz-buttons">
-                        <button class="quiz-quit">Exit Quiz</button>
-                        <button class="quiz-restart">Continue</button>
-                    </div>
+                <button class="matching-cards-btn">Start</button>
+                <div class="matching-cards-stats">
+                    <div class="matching-cards-moves">0 moves</div>
+                    <div class="matching-cards-timer">time: 0 sec</div>
                 </div>
-                <!-- Quiz Box -->
-                <div class="quiz-box">
-                    <section>
-                        <div class="quiz-title">Quiz Application</div>
-                        <div class="quiz-timer">
-                            <div class="quiz-time-left-txt">Time Left</div>
-                            <div class="quiz-timer-sec">15</div>
-                        </div>
-                        <div class="quiz-time-line"></div>
-                    </section>
-                    <section>
-                        <div class="quiz-question-text">
-                        </div>
-                        <div class="quiz-option-list">
-                        </div>
-                    </section>
-                    <!-- footer of Quiz Box -->
-                    <section id="quiz-footer">
-                        <div class="total-question">
-                            <!-- Here I've inserted Question Count Number from JavaScript -->
-                        </div>
-                        <button class="quiz-next-btn">Next Question</button>
-                    </section>
-                </div>
-                <!-- Result Box -->
-                <div class="quiz-result-box">
-                    <div class="icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="quiz-complete_text">You've completed the Quiz!</div>
-                    <div class="quiz-score_text">
-                        <!--Score result from JavaScript -->
-                    </div>
-                    <div class="quiz-buttons">
-                        <button class="quiz-restart">Replay Quiz</button>
-                        <button class="quiz-quit">Quit Quiz</button>
-                    </div>
-                </div>
+            </div>
+            <div class="matching-cards-board-container">
+                <div class="matching-cards-board" data-dimension="4"></div>
+                <div class="matching-cards-win">You won!</div>
 
                 <button class="close-btn">Close</button>
             </div>
