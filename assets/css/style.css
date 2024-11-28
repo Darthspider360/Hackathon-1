@@ -2,21 +2,52 @@
 
 /* General styles */
 
-body{
+body {
     background-color: #f7f4da;
 }
 
+.section {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
 
 
 .navbar-custom {
     color: #353b3c;
-    background-color:#eedd9966!important;
+    background-color: transparent !important;
 }
 
-#main-map img {
+#main-map {
+    background-image: url(../images/main-map.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     height: 100%;
     width: 100%;
-  }
-  
+    margin: 0;
+}
 
+.btn--big {
+    width: 100px;
+    height: 100px;
+    font-size: 3.2rem;
+    margin: 0 30px;
+}
 
+.game-area{
+    position: relative;
+    width: 100%;
+    height: 200%;
+}
+
+#boat {
+    position: absolute;
+    bottom: 70px;
+    right: 140px;
+}
+
+#tree{
+    position: absolute;
+    top: 290px;
+    left: 3px;
+}
