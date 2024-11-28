@@ -17,6 +17,23 @@ body{
     height: 100%;
     width: 100%;
   }
-  
+
+.carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    border: 2px solid transparent;
+}
+
+.carousel-image.active {
+    border-color: red;
+}
+
 
 
