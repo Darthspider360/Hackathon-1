@@ -4,6 +4,15 @@
 const modals = document.querySelectorAll(".minigame");
 const showModalBtn = document.getElementById("show-minigame-btn");
 
+//Retrieve elements for hangman game
+
+const wordDisplay = document.querySelector(".word-display");
+const guessesText = document.querySelector(".guesses-text b");
+const keyboardDiv = document.querySelector(".keyboard");
+const hangmanImage = document.querySelector(".hangman-box img");
+const gameModal = document.querySelector(".game-modal");
+const playAgainBtn = gameModal.querySelector("button");
+
 // Function to show a random minigame modal
 function showRandomModal() {
     // Hide all minigame modals
