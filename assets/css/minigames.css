@@ -165,7 +165,7 @@ button[disabled] {
 
 
 
-button {
+.matching-cards-btn {
     background: #282A3A;
     color: #FFF;
     border-radius: 5px;
