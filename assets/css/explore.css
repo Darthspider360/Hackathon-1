@@ -12,7 +12,7 @@
 }
 
 .carousel-image.active {
-    border-color: red;
+    border-color: black;
 }
 
 .carousel {
@@ -39,14 +39,36 @@
 }
 
 #carousel-up {
-    top: 0;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -100%);
 }
 
 #carousel-down {
-    bottom: 0;
+    bottom: 20%;
     left: 50%;
     transform: translate(-50%, 100%);
+}
+
+.mini-map {
+    margin-top: 20px;
+}
+
+.mini-map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 20px);
+    grid-template-rows: repeat(3, 20px);
+    gap: 5px;
+}
+
+.mini-map-cell {
+    width: 20px;
+    height: 20px;
+    background-color: lightgray;
+    border: 1px solid black;
+}
+
+.mini-map-cell.active {
+    background-color: red;
 }
 

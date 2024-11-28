@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const exploreButton = document.getElementById('explore-button');
     const carouselImage = document.querySelector('.carousel-image');
+    const miniMapCells = document.querySelectorAll('.mini-map-cell');
     const imagePaths = [
         'assets/images/mt/mt-1-center path-top-cloggy.png',
         'assets/images/mt/mt-2-center path-top-sunny.png',
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/images/mt/mt-10-side path-mid-no habitation.png',
         // Add more image paths as needed
     ];
-    let currentPosition = 0;
+    let currentPosition = { row: 1, col: 1 };
 
     const loadImages = () => {
         const usedIndices = new Set();
@@ -31,19 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const moveCarousel = (direction) => {
         switch (direction) {
             case 'left':
-            case 'up':
-                if (currentPosition > 0) currentPosition--;
+                if (currentPosition.col > 0) currentPosition.col--;
                 break;
             case 'right':
+                if (currentPosition.col < 2) currentPosition.col++;
+                break;
+            case 'up':
+                if (currentPosition.row > 0) currentPosition.row--;
+                break;
             case 'down':
-                if (currentPosition < imagePaths.length - 1) currentPosition++;
+                if (currentPosition.row < 2) currentPosition.row++;
                 break;
         }
         updateCarousel();
     };
 
     const updateCarousel = () => {
-        carouselImage.src = imagePaths[currentPosition];
+        const index = currentPosition.row * 3 + currentPosition.col;
+        carouselImage.src = imagePaths[index];
+        miniMapCells.forEach((cell, i) => {
+            cell.classList.toggle('active', i === index);
+        });
     };
 
     document.getElementById('carousel-left').addEventListener('click', () => moveCarousel('left'));
