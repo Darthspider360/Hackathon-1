@@ -1,8 +1,8 @@
 // **GENERATE RANDOM MODALS**
 
 // Retrieve all modals and the button
-const modals = document.querySelectorAll(".modal");
-const showModalBtn = document.getElementById("show-modal-btn");
+const modals = document.querySelectorAll(".minigame");
+const showModalBtn = document.getElementById("show-minigame-btn");
 
 // Function to show a random minigame modal
 function showRandomModal() {
