@@ -35,9 +35,16 @@ body {
     height: 100vh; /* Full viewport height */
 }
 
+/* place holder button */
+#combat-start-btn{
+    position: absolute;
+    bottom: 100px;
+    right: 300px;
+}
 
 /* combat styling */
-.combat-attack-btn, .combat-heal-btn {
+
+#combat-attack-btn, #combat-heal-btn {
     background: #3498db;
     color: #fff;
     border: none;
@@ -48,7 +55,7 @@ body {
     font-size: 16px;
 }
 
-.combat-attack-btn:hover, .combat-heal-btn:hover {
+#combat-attack-btn:hover, #combat-heal-btn:hover {
     background: #2980b9;
 }
 
