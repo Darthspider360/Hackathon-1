@@ -1,16 +1,18 @@
+const startQuestBtn = document.getElementById("quest");
+
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-            if (this.getAttribute("data-type") === "quest") {
-                loadQuest();
-            } else {
-                let questMap = this.getAttribute("data-type");
+            let questMap = this.getAttribute("data-type");
                 loadQuestMap(questMap);
-            }
         });
+
     }
+    startQuestBtn.addEventListener("click", () => {
+        loadQuest();
+    }); 
 
     document.getElementById("backButton").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
@@ -30,11 +32,10 @@ function loadQuestMap(questMap) {
         window.location.href = 'castleMap.html';
     } else if (questMap === "skull") {
         window.location.href = 'bossMap.html';
-    } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
-    }
+    } 
 }
+
+
 
 // Function to randomly choose between showing a random minigame or starting the combat game
 function loadQuest() {
