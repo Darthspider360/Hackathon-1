@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
     document.getElementById("backButton").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             loadQuestMap();
@@ -35,6 +36,25 @@ function loadQuestMap(questMap) {
     }
 }
 
-function loadQuest(){
-    
+// Function to randomly choose between showing a random minigame or starting the combat game
+function loadQuest() {
+    // Generate a random number between 0 and 1
+    const randomChoice = Math.random();
+
+    // If randomChoice is less than 0.5, show a random minigame modal
+    if (randomChoice < 0.5) {
+        // Ensure the combat event listener is only attached once
+        combatStartBtn.removeEventListener("click", startCombatGame); 
+        showRandomModal();
+    } else {
+        // Otherwise, start the combat game
+        // Ensure the minigame modal isn't triggered when setting up the combat event listener
+        combatStartBtn.addEventListener("click", startCombatGame);
+    }
+}
+
+// Define a separate function for combat
+function startCombatGame() {
+    combatModal.style.display = "flex";
+    resetCombatGame();
 }
