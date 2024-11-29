@@ -60,5 +60,12 @@ body {
 
 #fort{
     position: absolute;
-    top
+    top: 280px;
+    right: 220px;
+}
+
+#skull{
+    position: absolute;
+    top: 150px;
+    right: 0px;
 }
