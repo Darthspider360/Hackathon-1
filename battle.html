@@ -20,54 +20,48 @@
     <!-- bootstrap navbar -->
     <nav class="navbar bg-body-tertiary navbar-custom fixed-top">
         <div class="container-fluid d-flex justify-content-center">
-            <span class="navbar-brand mb-0 h1">title</span>
+            <span class="navbar-brand mb-0 h1">battle</span>
         </div>
     </nav>
-    <main>
-
+    <main class="d-flex flex-column align-items-center">
+        <!-- Battle -->
         <section id="battle" class="mt-5" aria-label="battle">
             <div class="container">
-                <div class="row">
-                   
+             
                     
-                    <!-- Enemy Column -->
-                    <div class="mt-2 justify-content-center">
+                     
                         <button class="btn btn-danger mb-2">Attack</button>
                         <button class="btn btn-secondary mb-2">Defence</button>
                         <button class="btn btn-success mb-2">Heal</button>
                         <button class="btn btn-warning">Flee</button>
-                    </div>
-                    <div class="col-md-6 d-flex flex-column justify-content-start align-items-end">
-                        <img src="assets/images/battle/testboss.png" alt="Enemy" class="img-fluid">
-                        
-                    </div>
+                     
                     
-                </div>
-                <!-- Hero Column -->
-                <div class="col-md-6 d-flex flex-column justify-content-end">
-                    <img src="assets/images/battle/knight-s.png" alt="Hero" class="img">
-                    <div class="mt-2">
-                        <div class="d-flex align-items-center">
-                            <span class="me-2">HP:</span>
-                            <div class="progress w-100">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <span class="me-2">Pow:</span>
-                            <div class="d-flex">
-                                <img src="assets/images/power-placeholder.png" alt="Power Level 1" class="img-fluid me-1">
-                                <img src="assets/images/power-placeholder.png" alt="Power Level 2" class="img-fluid me-1">
-                                <img src="assets/images/power-placeholder.png" alt="Power Level 3" class="img-fluid me-1">
-                                <img src="assets/images/power-placeholder.png" alt="Power Level 4" class="img-fluid me-1">
-                                <img src="assets/images/power-placeholder.png" alt="Power Level 5" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <img src="assets/images/battle/testboss.png" alt="Enemy">
+                        <img src="assets/images/battle/knight-s.png" alt="Hero">
+                     
+                
             </div>
         </section> 
+
+        <div class="mt-2">
+            <div class="d-flex align-items-center">
+                <span class="me-2">HP:</span>
+                <div class="progress w-100">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center mt-2">
+                <span class="me-2">Pow:</span>
+                <div class="d-flex">
+                    <img src="assets/images/power-placeholder.png" alt="Power Level 1" class="img-fluid me-1">
+                    <img src="assets/images/power-placeholder.png" alt="Power Level 2" class="img-fluid me-1">
+                    <img src="assets/images/power-placeholder.png" alt="Power Level 3" class="img-fluid me-1">
+                    <img src="assets/images/power-placeholder.png" alt="Power Level 4" class="img-fluid me-1">
+                    <img src="assets/images/power-placeholder.png" alt="Power Level 5" class="img-fluid">
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="mt-auto">
         <div class="container d-flex justify-content-center">
