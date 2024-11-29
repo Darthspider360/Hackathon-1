@@ -2,6 +2,7 @@
 let combatPlayerHp = 100;
 let combatEnemyHp = 100;
 const combatMaxHp = 100;
+let combatHealCount = 2; // Player starts with 2 heals
 
 // DOM Elements
 const combatStartBtn = document.getElementById("combat-start-btn");
@@ -23,6 +24,12 @@ function updateCombatHealth() {
     combatEnemyHealthBar.style.width = `${(combatEnemyHp / combatMaxHp) * 100}%`;
 }
 
+// Function to update heal button status
+function updateHealButton() {
+    combatHealBtn.textContent = `Heal (${combatHealCount} left)`;
+    combatHealBtn.disabled = combatHealCount <= 0;
+}
+
 // Enemy turn logic
 function combatEnemyTurn() {
     const damage = Math.floor(Math.random() * 15) + 5;
@@ -33,7 +40,7 @@ function combatEnemyTurn() {
 
     setTimeout(() => {
         combatAttackBtn.disabled = false;
-        combatHealBtn.disabled = false;
+        combatHealBtn.disabled = combatHealCount <= 0;
         if (combatPlayerHp > 0) combatMessageEl.textContent = "It's your turn!";
     }, 1000);
 }
@@ -61,21 +68,25 @@ combatAttackBtn.addEventListener("click", () => {
 
     if (combatEnemyHp > 0) {
         combatAttackBtn.disabled = true;
-        combatHealBtn.disabled = true;
+        combatHealBtn.disabled = combatHealCount <= 0;
         setTimeout(combatEnemyTurn, 1000);
     }
 });
 
 // Player heal
 combatHealBtn.addEventListener("click", () => {
-    const healAmount = Math.floor(Math.random() * 15) + 10;
-    combatPlayerHp = Math.min(combatMaxHp, combatPlayerHp + healAmount);
-    combatMessageEl.textContent = `You heal yourself for ${healAmount} HP!`;
-    updateCombatHealth();
+    if (combatHealCount > 0) {
+        const healAmount = Math.floor(Math.random() * 15) + 10;
+        combatPlayerHp = Math.min(combatMaxHp, combatPlayerHp + healAmount);
+        combatHealCount--;
+        combatMessageEl.textContent = `You heal yourself for ${healAmount} HP!`;
+        updateCombatHealth();
+        updateHealButton();
 
-    combatAttackBtn.disabled = true;
-    combatHealBtn.disabled = true;
-    setTimeout(combatEnemyTurn, 1000);
+        combatAttackBtn.disabled = true;
+        combatHealBtn.disabled = true;
+        setTimeout(combatEnemyTurn, 1000);
+    }
 });
 
 // Open modal
@@ -93,11 +104,14 @@ combatCloseModalBtn.addEventListener("click", () => {
 function resetCombatGame() {
     combatPlayerHp = combatMaxHp;
     combatEnemyHp = combatMaxHp;
+    combatHealCount = 2; // Reset heal count
     updateCombatHealth();
+    updateHealButton();
     combatMessageEl.textContent = "Battle begins! It's your turn!";
     combatAttackBtn.disabled = false;
     combatHealBtn.disabled = false;
 }
 
-// Initialize health bars
+// Initialize health bars and heal button
 updateCombatHealth();
+updateHealButton();
