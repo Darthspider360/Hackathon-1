@@ -25,7 +25,7 @@ button:hover {
     background: #2980b9;
 }
 
-.modal {
+.combat-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -37,7 +37,7 @@ button:hover {
     align-items: center;
 }
 
-.modal-content {
+.combat-modal-content {
     background: #3e4a5c;
     border-radius: 8px;
     text-align: center;
@@ -47,7 +47,7 @@ button:hover {
     position: relative;
 }
 
-.close-btn {
+.combat-close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -56,18 +56,18 @@ button:hover {
     cursor: pointer;
 }
 
-.health-bars {
+.combat-health-bars {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
 }
 
-.health-bar {
+.combat-health-bar {
     width: 45%;
     text-align: center;
 }
 
-.health {
+.combat-health {
     height: 20px;
     background: #27ae60;
     margin: 10px 0;

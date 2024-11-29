@@ -7,33 +7,33 @@
     <link rel="stylesheet" href="assets/css/combat.css">
 </head>
 <body>
-    <div class="game-container">
-        <button id="start-combat-btn">Start Combat</button>
+    <div class="combat-game-container">
+        <button id="combat-start-btn">Start Combat</button>
     </div>
 
     <!-- Combat Modal -->
-    <div class="modal" id="combat-modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-modal">&times;</span>
-            <div class="status">
+    <div class="combat-modal" id="combat-modal">
+        <div class="combat-modal-content">
+            <span class="combat-close-btn" id="combat-close-modal">&times;</span>
+            <div class="combat-status">
                 <h1>Turn-Based RPG Combat</h1>
-                <p id="message">Battle begins! It's your turn!</p>
+                <p id="combat-message">Battle begins! It's your turn!</p>
             </div>
-            <div class="health-bars">
-                <div class="health-bar">
+            <div class="combat-health-bars">
+                <div class="combat-health-bar">
                     <h2>Player</h2>
-                    <div class="health" id="player-health"></div>
-                    <p id="player-hp">HP: 100</p>
+                    <div class="combat-health" id="combat-player-health"></div>
+                    <p id="combat-player-hp">HP: 100</p>
                 </div>
-                <div class="health-bar">
+                <div class="combat-health-bar">
                     <h2>Enemy</h2>
-                    <div class="health" id="enemy-health"></div>
-                    <p id="enemy-hp">HP: 100</p>
+                    <div class="combat-health" id="combat-enemy-health"></div>
+                    <p id="combat-enemy-hp">HP: 100</p>
                 </div>
             </div>
-            <div class="actions">
-                <button id="attack-btn">Attack</button>
-                <button id="heal-btn">Heal</button>
+            <div class="combat-actions">
+                <button id="combat-attack-btn">Attack</button>
+                <button id="combat-heal-btn">Heal</button>
             </div>
         </div>
     </div>
