@@ -1,5 +1,6 @@
 /* General styles */
 
+
 /* General styles */
 
 body {
@@ -15,7 +16,7 @@ body {
 .btn--big {
     width: 100px;
     height: 100px;
-    font-size: 3.2rem;
+    font-size: 3rem;
     margin: 0 30px;
 }
 
@@ -30,12 +31,11 @@ body {
 /* code snippet from https://stackoverflow.com/questions/1909648/stacking-divs-on-top-of-each-other */
 .inner {
     position: absolute;
-  }
+    display: flex;
+    justify-content: center;
+}
 
-/* Ensure the container is a flex container */
-/* .container {
-    
-} */
+
 
 /* place holder button */
 #quest{
