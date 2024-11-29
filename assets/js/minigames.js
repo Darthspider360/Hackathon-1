@@ -4,30 +4,30 @@ const modals = document.querySelectorAll(".minigame");
 const showModalBtn = document.querySelectorAll(".show-minigame-btn");
 
 function showRandomModal() {
-    // Hide all modals
-    modals.forEach(modal => {
-        modal.style.display = "none"; // Hide each modal
+    // Hide the combat modal to avoid conflicts
+    combatModal.style.display = "none";
+
+    // Hide all minigame modals initially
+    modals.forEach((modal) => {
+        modal.style.display = "none";
     });
 
-    showModalBtn.forEach(button => {
-        button.addEventListener("click", showRandomModal);
-    });
-    
-
-    // Randomly select a minigame
+    // Randomly select one of the minigame modals
     const randomModalIndex = Math.floor(Math.random() * modals.length);
     const randomMinigame = modals[randomModalIndex];
 
-    // Show the selected modal
+    // Show the selected minigame modal
     randomMinigame.style.display = "block";
 
+    // Attach a close button functionality to close the modal
     const closeBtn = randomMinigame.querySelector(".close-btn");
     if (closeBtn) {
         closeBtn.onclick = () => {
-            randomMinigame.style.display = "none"; // Close the modal
+            randomMinigame.style.display = "none";
         };
     }
 }
+
 
 // Attach event listeners to all buttons
 showModalBtn.forEach(button => {
