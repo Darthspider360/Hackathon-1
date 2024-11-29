@@ -114,4 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load images when the page is loaded
     loadImages();
+
+    const atkButton = document.getElementById('atkButton');
+    atkButton.addEventListener('click', () => {
+        reduceHp(10); // Example action: reduce HP by 10
+    });
+
+    const defButton = document.getElementById('defButton');
+    defButton.addEventListener('click', () => {
+        // Example action: increase DEF by 1
+        hero.DEF += 1;
+        console.log(`DEF increased to ${hero.DEF}`);
+    });
+
+    const healButton = document.getElementById('healButton');
+    healButton.addEventListener('click', () => {
+        // Empty click event listener
+    });
+
+    const fleeButton = document.getElementById('fleeButton');
+    fleeButton.addEventListener('click', () => {
+        // Empty click event listener
+    });
 });

@@ -75,3 +75,61 @@
 .mini-map-cell.active {
     background-color: red;
 }
+
+#battle {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#battle .d-flex {
+    gap: 10px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.start-0 {
+    left: 0;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.start-50 {
+    left: 50%;
+}
+
+.translate-middle-x {
+    transform: translateX(-50%);
+}
+
+.top-50 {
+    top: 50%;
+}
+
+.translate-middle-y {
+    transform: translateY(-50%);
+}
+
+.end-0 {
+    right: 0;
+}
+
+#atkButton, #defButton, #healButton, #fleeButton {
+    background-color: transparent;
+}
+
+#fleeButton {
+    color: white;
+}
