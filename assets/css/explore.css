@@ -39,13 +39,13 @@
 }
 
 #carousel-up {
-    top: 10%;
+    top: 7%;
     left: 50%;
     transform: translate(-50%, -100%);
 }
 
 #carousel-down {
-    bottom: 20%;
+    bottom: 19%;
     left: 50%;
     transform: translate(-50%, 100%);
 }
