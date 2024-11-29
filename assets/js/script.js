@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-            if (this.getAttribute("data-type") === "submit") {
-                checkAnswer();
+            if (this.getAttribute("data-type") === "quest") {
+                loadQuest();
             } else {
                 let questMap = this.getAttribute("data-type");
                 loadQuestMap(questMap);
@@ -33,4 +33,8 @@ function loadQuestMap(questMap) {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
+}
+
+function loadQuest(){
+    
 }
