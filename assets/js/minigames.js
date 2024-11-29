@@ -1,7 +1,7 @@
 // **RANDOM MODAL GENERATOR AND HANGMAN GAME**
 
 const modals = document.querySelectorAll(".minigame");
-const showModalBtn = document.getElementById("show-minigame-btn");
+const showModalBtn = document.querySelectorAll(".show-minigame-btn");
 
 function showRandomModal() {
     // Hide all modals
@@ -9,14 +9,14 @@ function showRandomModal() {
         modal.style.display = "none"; // Hide each modal
     });
 
+    showModalBtn.forEach(button => {
+        button.addEventListener("click", showRandomModal);
+    });
+    
+
     // Randomly select a minigame
     const randomModalIndex = Math.floor(Math.random() * modals.length);
     const randomMinigame = modals[randomModalIndex];
-
-    // Check if the selected modal contains the Hangman game
-    if (randomMinigame.classList.contains("hangman")) {
-        initialiseHangmanGame(randomMinigame); // Initialize Hangman game if it's the Hangman modal
-    }
 
     // Show the selected modal
     randomMinigame.style.display = "block";
@@ -29,9 +29,10 @@ function showRandomModal() {
     }
 }
 
-if (showModalBtn) {
-    showModalBtn.addEventListener("click", showRandomModal);
-}
+// Attach event listeners to all buttons
+showModalBtn.forEach(button => {
+    button.addEventListener("click", showRandomModal);
+});
 
 // **Number Guesser GAME LOGIC**
 
