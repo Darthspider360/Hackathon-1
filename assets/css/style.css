@@ -6,26 +6,11 @@ body {
     background-color: #f7f4da;
 }
 
-.section {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
-
-
 .navbar-custom {
     color: #353b3c;
     background-color: transparent !important;
 }
 
-#main-map {
-    background-image: url(../images/main-map.png); */
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
 
 .btn--big {
     width: 100px;
@@ -40,14 +25,164 @@ body {
     height: 200%;
 }
 
-#boat {
-    position: absolute;
-    bottom: 70px;
-    right: 140px;
+
+
+/* Ensure the container is a flex container */
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
 }
 
-#tree{
+/* place holder button */
+#quest{
     position: absolute;
-    top: 290px;
-    left: 3px;
+    bottom: 100px;
+    right: 300px;
+}
+
+/* combat styling */
+
+#combat-attack-btn, #combat-heal-btn {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#combat-attack-btn:hover, #combat-heal-btn:hover {
+    background: #2980b9;
+}
+
+.combat-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.combat-modal-content {
+    background: #3e4a5c;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.combat-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.combat-health-bars {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.combat-health-bar {
+    width: 45%;
+    text-align: center;
+}
+
+.combat-health {
+    height: 20px;
+    background: #27ae60;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+#map{
+    z-index: 0;
+}
+
+#icons{
+    z-index: 1;
+}
+
+@media screen and (max-width: 576px) {
+    #boat {
+        position: absolute;
+        bottom: 65px;
+        right: 145px;
+    }
+    
+    #tree{
+        position: absolute;
+        top: 310px;
+        left: 20px;
+    }
+    
+    #mountain{
+        position: absolute;
+        top: 200px;
+        right: 210px;
+    }
+    
+    #fort{
+        position: absolute;
+        top: 310px;
+        right: 216px;
+    }
+    
+    #skull{
+        position: absolute;
+        top: 175px;
+        right: 0px;
+    }
+    
+
+    /* boat scene */
+
+    #checkBox{
+        position: absolute;
+        top: 200px;
+        right: 200px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #boat {
+        position: absolute;
+        bottom: 0rem;
+        right: 220px;
+    }
+    
+    #tree{
+        position: absolute;
+        
+    }
+    
+    #mountain{
+        position: absolute;
+        
+    }
+    
+    #fort{
+        position: absolute;
+        
+    }
+    
+    #skull{
+        position: absolute;
+        
+    }
+    
 }

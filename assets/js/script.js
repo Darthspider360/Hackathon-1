@@ -3,14 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-            if (this.getAttribute("data-type") === "submit") {
-                checkAnswer();
+            if (this.getAttribute("data-type") === "quest") {
+                loadQuest();
             } else {
                 let questMap = this.getAttribute("data-type");
                 loadQuestMap(questMap);
             }
         });
     }
+
     document.getElementById("backButton").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             loadQuestMap();
@@ -29,8 +30,30 @@ function loadQuestMap(questMap) {
         window.location.href = 'castleMap.html';
     } else if (questMap === "skull") {
         window.location.href = 'bossMap.html';
+    } 
+}
+
+
+
+// Function to randomly choose between showing a random minigame or starting the combat game
+function loadQuest() {
+    // Generate a random number between 0 and 1
+    const randomChoice = Math.random();
+
+    // If randomChoice is less than 0.5, show a random minigame modal
+    if (randomChoice < 0.5) {
+        // Ensure the combat event listener is only attached once
+        combatStartBtn.removeEventListener("click", startCombatGame); 
+        showRandomModal();
     } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
+        // Otherwise, start the combat game
+        // Ensure the minigame modal isn't triggered when setting up the combat event listener
+        combatStartBtn.addEventListener("click", startCombatGame);
     }
+}
+
+// Define a separate function for combat
+function startCombatGame() {
+    combatModal.style.display = "flex";
+    resetCombatGame();
 }
