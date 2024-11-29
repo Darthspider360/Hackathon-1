@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn-Based RPG Combat</title>
+    <link rel="stylesheet" href="assets/css/combat.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="status">
+            <h1>Turn-Based RPG Combat</h1>
+            <p id="message">Battle begins! It's your turn!</p>
+        </div>
+        <div class="health-bars">
+            <div class="health-bar">
+                <h2>Player</h2>
+                <div class="health" id="player-health"></div>
+                <p id="player-hp">HP: 100</p>
+            </div>
+            <div class="health-bar">
+                <h2>Enemy</h2>
+                <div class="health" id="enemy-health"></div>
+                <p id="enemy-hp">HP: 100</p>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="attack-btn">Attack</button>
+            <button id="heal-btn">Heal</button>
+        </div>
+    </div>
+    <script src="assets/js/combat.js"></script>
+</body>
+</html>
