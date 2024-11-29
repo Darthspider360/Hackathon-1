@@ -50,6 +50,10 @@
     transform: translate(-50%, 100%);
 }
 
+#main-map {
+    background-image: none;
+}
+
 .mini-map {
     margin-top: 20px;
 }

@@ -1,18 +1,16 @@
-const startQuestBtn = document.getElementById("quest");
-
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-            let questMap = this.getAttribute("data-type");
+            if (this.getAttribute("data-type") === "quest") {
+                loadQuest();
+            } else {
+                let questMap = this.getAttribute("data-type");
                 loadQuestMap(questMap);
+            }
         });
-
     }
-    startQuestBtn.addEventListener("click", () => {
-        loadQuest();
-    }); 
 
     document.getElementById("backButton").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
