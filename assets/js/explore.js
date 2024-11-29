@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const hero = {
+        HP: 100,
+        ATK: 1,
+        DEF: 1,
+        POTION: 20,
+        POW: 1, 
+    };
+
+    const boss = {
+        HP: 300,
+        ATK: 3,
+        DEF: 1
+    };
+
+    const hpBar = document.querySelector('.progress-bar.bg-danger');
+    const reducedHpBar = document.querySelector('.progress-bar.bg-primary');
+
+    const updateHpBar = () => {
+        const hpPercentage = hero.HP;
+        hpBar.style.width = `${hpPercentage}%`;
+        reducedHpBar.style.width = `${100 - hpPercentage}%`;
+    };
+
+    // Example function to reduce HP
+    const reduceHp = (amount) => {
+        hero.HP = Math.max(0, hero.HP - amount);
+        updateHpBar();
+    };
+
+    // Initial HP bar update
+    updateHpBar();
+
+    // Example usage: reduce HP by 20
+    reduceHp(0);
+
     const exploreButton = document.getElementById('explore-button');
     const carouselImage = document.querySelector('.carousel-image');
     const miniMapCells = document.querySelectorAll('.mini-map-cell');

@@ -19,7 +19,7 @@ body {
 }
 
 #main-map {
-/*    background-image: url(../images/main-map.png); */
+    background-image: url(../images/main-map.png); */
     background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
