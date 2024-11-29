@@ -6,26 +6,11 @@ body {
     background-color: #f7f4da;
 }
 
-.section {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
-
-
 .navbar-custom {
     color: #353b3c;
     background-color: transparent !important;
 }
 
-#main-map {
-/*    background-image: url(../images/main-map.png); */
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
 
 .btn--big {
     width: 100px;
@@ -40,32 +25,88 @@ body {
     height: 200%;
 }
 
-#boat {
-    position: absolute;
-    bottom: 70px;
-    right: 140px;
+
+
+/* Ensure the container is a flex container */
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
 }
 
-#tree{
-    position: absolute;
-    top: 290px;
-    left: 3px;
+/* Style the image */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
-#mountain{
-    position: absolute;
-    top: 150px;
-    right: 220px;
+#map{
+    z-index: 0;
 }
 
-#fort{
-    position: absolute;
-    top: 280px;
-    right: 220px;
+#icons{
+    z-index: 1;
 }
 
-#skull{
-    position: absolute;
-    top: 150px;
-    right: 0px;
+@media screen and (max-width: 576px) {
+    #boat {
+        position: absolute;
+        bottom: 65px;
+        right: 145px;
+    }
+    
+    #tree{
+        position: absolute;
+        top: 310px;
+        left: 20px;
+    }
+    
+    #mountain{
+        position: absolute;
+        top: 200px;
+        right: 210px;
+    }
+    
+    #fort{
+        position: absolute;
+        top: 310px;
+        right: 216px;
+    }
+    
+    #skull{
+        position: absolute;
+        top: 175px;
+        right: 0px;
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    #boat {
+        position: absolute;
+        bottom: 0rem;
+        right: 220px;
+    }
+    
+    #tree{
+        position: absolute;
+        
+    }
+    
+    #mountain{
+        position: absolute;
+        
+    }
+    
+    #fort{
+        position: absolute;
+        
+    }
+    
+    #skull{
+        position: absolute;
+        
+    }
+    
 }
