@@ -26,89 +26,90 @@
     </nav>
     <main>
         <div>
-            <div class="container section">
+            <div class="container section inner background">
                 <div class="row">
                     <img src="assets/images/boatScene.png" alt="main-map" class="img-fluid">
                 </div>
             </div>
-        </div>
-        <div class="container controls-area justify-content-center" id="icons">
-            <button data-type="quest" class="btn btn--big" data-bs-toggle="modal" type="submit" id="combat-start-btn">
-                <i class="fa-regular fa-square fa-fade" style="color: #f3e9a9;"></i>
-            </button>
 
-        </div>
+            <div class="container controls-area inner" id="icons">
+                <button data-type="quest" class="btn btn--big" data-bs-toggle="modal" type="submit"
+                    id="combat-start-btn">
+                    <i class="fa-regular fa-square fa-fade" style="color: #f3e9a9;"></i>
+                </button>
 
-        <!-- Combat Modal -->
-        <div class="combat-modal" id="combat-modal">
-            <div class="combat-modal-content">
-                <span class="combat-close-btn" id="combat-close-modal">&times;</span>
-                <div class="combat-status">
-                    <h1>Turn-Based RPG Combat</h1>
-                    <p id="combat-message">Battle begins! It's your turn!</p>
-                </div>
-                <div class="combat-health-bars">
-                    <div class="combat-health-bar">
-                        <h2>Player</h2>
-                        <div class="combat-health" id="combat-player-health"></div>
-                        <p id="combat-player-hp">HP: 100</p>
-                    </div>
-                    <div class="combat-health-bar">
-                        <h2>Enemy</h2>
-                        <div class="combat-health" id="combat-enemy-health"></div>
-                        <p id="combat-enemy-hp">HP: 100</p>
-                    </div>
-                </div>
-                <div class="combat-actions">
-                    <button id="combat-attack-btn">Attack</button>
-                    <button id="combat-heal-btn">Heal</button>
-                </div>
             </div>
         </div>
-        <!-- Minigame Modals-->
-        <div class="minigame" id="game1">
-            <div class="minigame-content">
-                <div class="guess-wrapper">
-                    <section id="guess-section">Guess a number from 1 to 100</section>
-                    <p class="guess"></p>
-                    <div class="guess-input-field">
-                        <input class="guess-input" type="number" />
-                        <button class="guess-btn">Check</button>
+            <!-- Combat Modal -->
+            <div class="combat-modal" id="combat-modal">
+                <div class="combat-modal-content">
+                    <span class="combat-close-btn" id="combat-close-modal">&times;</span>
+                    <div class="combat-status">
+                        <h1>Turn-Based RPG Combat</h1>
+                        <p id="combat-message">Battle begins! It's your turn!</p>
                     </div>
-                    <p>You have <span class="guess-chances">10</span> chances</p>
+                    <div class="combat-health-bars">
+                        <div class="combat-health-bar">
+                            <h2>Player</h2>
+                            <div class="combat-health" id="combat-player-health"></div>
+                            <p id="combat-player-hp">HP: 100</p>
+                        </div>
+                        <div class="combat-health-bar">
+                            <h2>Enemy</h2>
+                            <div class="combat-health" id="combat-enemy-health"></div>
+                            <p id="combat-enemy-hp">HP: 100</p>
+                        </div>
+                    </div>
+                    <div class="combat-actions">
+                        <button id="combat-attack-btn">Attack</button>
+                        <button id="combat-heal-btn">Heal</button>
+                    </div>
                 </div>
-                <button class="close-btn">Close</button>
             </div>
-        </div>
+            <!-- Minigame Modals-->
+            <div class="minigame" id="game1">
+                <div class="minigame-content">
+                    <div class="guess-wrapper">
+                        <section id="guess-section">Guess a number from 1 to 100</section>
+                        <p class="guess"></p>
+                        <div class="guess-input-field">
+                            <input class="guess-input" type="number" />
+                            <button class="guess-btn">Check</button>
+                        </div>
+                        <p>You have <span class="guess-chances">10</span> chances</p>
+                    </div>
+                    <button class="close-btn">Close</button>
+                </div>
+            </div>
 
-        <div class="minigame" id="game2">
-            <section class="rps-container">
-                <div class="rps-result_field">
-                    <div class="rps-result_images">
-                        <span class="rps-user_result">
+            <div class="minigame" id="game2">
+                <section class="rps-container">
+                    <div class="rps-result_field">
+                        <div class="rps-result_images">
+                            <span class="rps-user_result">
+                                <img src="images/rock.png" alt="" />
+                            </span>
+                            <span class="rps-cpu_result">
+                                <img src="images/rock.png" alt="" />
+                            </span>
+                        </div>
+                        <div class="rps-result">Play</div>
+                    </div>
+                    <div class="rps-option_images">
+                        <span class="rps-option_image">
                             <img src="images/rock.png" alt="" />
+                            <p>Rock</p>
                         </span>
-                        <span class="rps-cpu_result">
-                            <img src="images/rock.png" alt="" />
+                        <span class="rps-option_image">
+                            <img src="images/paper.png" alt="" />
+                            <p>Paper</p>
+                        </span>
+                        <span class="rps-option_image">
+                            <img src="images/scissors.png" alt="" />
+                            <p>Scissors</p>
                         </span>
                     </div>
-                    <div class="rps-result">Play</div>
-                </div>
-                <div class="rps-option_images">
-                    <span class="rps-option_image">
-                        <img src="images/rock.png" alt="" />
-                        <p>Rock</p>
-                    </span>
-                    <span class="rps-option_image">
-                        <img src="images/paper.png" alt="" />
-                        <p>Paper</p>
-                    </span>
-                    <span class="rps-option_image">
-                        <img src="images/scissors.png" alt="" />
-                        <p>Scissors</p>
-                    </span>
-                </div>
-            </section>
+                </section>
 
                 <button class="close-btn">Close</button>
             </div>
