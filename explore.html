@@ -24,39 +24,31 @@
         </div>
     </nav>
     <main>
-
-        <section class="mt-5" aria-label="exploring area">
-            <div class="container d-flex justify-content-center">
-                <div class="carousel col-12 col-md-8 col-lg-5">
-                    <img src="" alt="Carousel Image" class="carousel-image active">
-                    <button class="carousel-button" id="carousel-left">&#8656;</button>
-                    <button class="carousel-button" id="carousel-right">&#8658;</button>
-                    <button class="carousel-button" id="carousel-up">&#8657;</button>
-                    <button class="carousel-button" id="carousel-down">&#8659;</button>
+        <div>
+            <div class="container section" id="map">
+                <div class="row">
+                    <img src="main-map.png" alt="main-map" class="img-fluid">
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-primary" id="explore-button">Explore</button>
-            </div>
-            <div class="d-flex justify-content-center mt-3">
-                <div class="mini-map">
-                    <div class="mini-map-grid">
-                        <div class="mini-map-cell" id="cell-0-0"></div>
-                        <div class="mini-map-cell" id="cell-0-1"></div>
-                        <div class="mini-map-cell" id="cell-0-2"></div>
-                        <div class="mini-map-cell" id="cell-1-0"></div>
-                        <div class="mini-map-cell" id="cell-1-1"></div>
-                        <div class="mini-map-cell" id="cell-1-2"></div>
-                        <div class="mini-map-cell" id="cell-2-0"></div>
-                        <div class="mini-map-cell" id="cell-2-1"></div>
-                        <div class="mini-map-cell" id="cell-2-2"></div>
-                    </div>
-                </div>
-            </div>
-        </section> 
+        </div>
+        <div class="container controls-area justify-content-center main-map" id="icons">
+            <button data-type="boat" class="btn btn--big" type="submit" id="boat">
+                <i class="fa-solid fa-sailboat fa-bounce" style="color: #497a7e;"></i>
+            </button>
+            <button data-type="tree" class="btn btn--big" type="submit" id="tree">
+                <i class="fa-solid fa-tree fa-bounce" style="color: #3a5f3d;"></i>
+            </button>
+            <button data-type="mountain" class="btn btn--big" type="submit" id="mountain">
+                <i class="fa-solid fa-mountain-sun fa-bounce" style="color: #6a7b8d;"></i>
+            </button>
+            <button data-type="fort" class="btn btn--big" type="submit" id="fort">
+                <i class="fa-brands fa-fort-awesome fa-bounce" style="color: #8b4327;"></i>
+            </button>
+            <button data-type="skull" class="btn btn--big" type="submit" id="skull">
+                <i class="fa-solid fa-skull-crossbones fa-bounce" style="color: #0e110f;"></i>
+            </button>
 
-
-
+        </div>
     </main>
     <footer class="mt-auto">
         <div class="container d-flex justify-content-center">
@@ -64,9 +56,6 @@
                 <i class="fa-solid fa-circle-left" style="color: #330000;"></i>
             </button>
         </div>
-
-        
-
     </footer>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
