@@ -3,6 +3,10 @@
 *for pair programming ask Jeff Chen 29/11/2024-->
 */
 
+section {
+    background-color: black;
+}
+
 .mini-map {
     margin-top: 20px;
 }
@@ -35,11 +39,22 @@
     gap: 10px;
 }
 
-#battle .position-absolute.w-100 {
+#battle  {
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: black;
+    color: gold;
     border-radius: 5px;
     text-align: center;
+}
+
+#battleMsg {
+    color: red;
+    top: -80px;
+    transform: translateY(-100%);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
 }
 
 .position-relative {
