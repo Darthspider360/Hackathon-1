@@ -5,6 +5,7 @@
 
 section {
     background-color: black;
+    min-height: 100vh;
 }
 
 .mini-map {
@@ -45,6 +46,10 @@ section {
     color: gold;
     border-radius: 5px;
     text-align: center;
+}
+
+#battle .container {
+    transform: translateY(40%);
 }
 
 #battleMsg {
