@@ -1,0 +1,86 @@
+.mini-map {
+    margin-top: 20px;
+}
+
+.mini-map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 20px);
+    grid-template-rows: repeat(3, 20px);
+    gap: 5px;
+}
+
+.mini-map-cell {
+    width: 20px;
+    height: 20px;
+    background-color: lightgray;
+    border: 1px solid black;
+}
+
+.mini-map-cell.active {
+    background-color: red;
+}
+
+#battle {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#battle .d-flex {
+    gap: 10px;
+}
+
+#battle .position-absolute.w-100 {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.start-0 {
+    left: 0;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.start-50 {
+    left: 50%;
+}
+
+.translate-middle-x {
+    transform: translateX(-50%);
+}
+
+.top-50 {
+    top: 50%;
+}
+
+.translate-middle-y {
+    transform: translateY(-50%);
+}
+
+.end-0 {
+    right: 0;
+}
+
+#atkButton, #defButton, #healButton, #fleeButton {
+    background-color: transparent;
+}
+
+#fleeButton {
+    color: white;
+}
