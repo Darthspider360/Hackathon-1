@@ -1,57 +1,11 @@
-.carousel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
-}
+/**
+*working file for battle, please don't touch this file for now!! 
+*for pair programming ask Jeff Chen 29/11/2024-->
+*/
 
-.carousel-image {
-    width: 100%;
-    height: auto;
-    border: 2px solid transparent;
-}
-
-.carousel-image.active {
-    border-color: black;
-}
-
-.carousel {
-    position: relative;
-    text-align: center;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-#carousel-left {
-    left: 0;
-}
-
-#carousel-right {
-    right: 0;
-}
-
-#carousel-up {
-    top: 7%;
-    left: 50%;
-    transform: translate(-50%, -100%);
-}
-
-#carousel-down {
-    bottom: 19%;
-    left: 50%;
-    transform: translate(-50%, 100%);
-}
-
-#main-map {
-    background-image: none;
+section {
+    background-color: black;
+    min-height: 100vh;
 }
 
 .mini-map {
@@ -84,6 +38,28 @@
 
 #battle .d-flex {
     gap: 10px;
+}
+
+#battle  {
+    padding: 10px;
+    background-color: black;
+    color: gold;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#battle .container {
+    transform: translateY(40%);
+}
+
+#battleMsg {
+    color: red;
+    top: -80px;
+    transform: translateY(-100%);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
 }
 
 .position-relative {
