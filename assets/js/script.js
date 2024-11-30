@@ -37,20 +37,31 @@ function loadQuestMap(questMap) {
 
 // Function to randomly choose between showing a random minigame or starting the combat game
 function loadQuest() {
-    // Generate a random number between 0 and 1
+    // Generate a random number to decide between minigame and combat
     const randomChoice = Math.random();
 
-    // If randomChoice is less than 0.5, show a random minigame modal
     if (randomChoice < 0.5) {
-        // Ensure the combat event listener is only attached once
-        combatStartBtn.removeEventListener("click", startCombatGame); 
+        // Handle minigame modal
+        // Hide combat modal and detach its event listener
+        combatModal.style.display = "none";
+        combatStartBtn.removeEventListener("click", startCombatGame);
+
+        // Show a random minigame modal
         showRandomModal();
     } else {
-        // Otherwise, start the combat game
-        // Ensure the minigame modal isn't triggered when setting up the combat event listener
+        // Handle combat modal
+        // Hide all minigame modals
+        modals.forEach((modal) => (modal.style.display = "none"));
+
+        // Ensure the combat modal is ready to start
+        combatModal.style.display = "flex";
         combatStartBtn.addEventListener("click", startCombatGame);
+
+        // Reset combat game for a fresh start
+        resetCombatGame();
     }
 }
+
 
 // Define a separate function for combat
 function startCombatGame() {
