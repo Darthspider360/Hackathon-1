@@ -1,12 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
- 
 
-    
+    const locations = Object.freeze({
+        bosscastle: 0,
+        mountain: 1,
+    });
+
+    const currentLocation = locations.bosscastle;
 
     const exploreButton = document.getElementById('explore-button');
     const carouselImage = document.querySelector('.carousel-image');
     const miniMapCells = document.querySelectorAll('.mini-map-cell');
+    const locationSelect = document.getElementById('location-select');
     const imagePaths = [
+        [
+            'assets/images/bosscastle/angel.png',
+            'assets/images/bosscastle/bossgate.png',
+            'assets/images/bosscastle/deathknight.png',
+            'assets/images/bosscastle/eyeball.png',
+            'assets/images/bosscastle/puzzle 1.png',
+            'assets/images/bosscastle/trap 1.png',
+            'assets/images/bosscastle/trap 2.png',
+            'assets/images/bosscastle/trap 3.png',
+            'assets/images/bosscastle/vampire.png',
+        ],
+        [
         'assets/images/mt/mt-1-center path-top-cloggy.png',
         'assets/images/mt/mt-2-center path-top-sunny.png',
         'assets/images/mt/mt-3-center path-mid-sunny.png',
@@ -17,21 +34,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/images/mt/mt-8-round path-mid-tree.png',
         'assets/images/mt/mt-9-side path-mid-no habitation.png',
         'assets/images/mt/mt-10-side path-mid-no habitation.png',
+        ], 
+        
+
         // Add more image paths as needed
     ];
-    let currentPosition = { row: 1, col: 1 };
+    let currentPosition = {
+        row: 1,
+        col: 1
+    };
 
     const loadImages = () => {
+        const location = locationSelect.value === 'mountain' ? locations.mountain : locations.bosscastle;
         const usedIndices = new Set();
         let randomIndex;
         do {
-            randomIndex = Math.floor(Math.random() * imagePaths.length);
+            randomIndex = Math.floor(Math.random() * imagePaths[location].length);
         } while (usedIndices.has(randomIndex));
         usedIndices.add(randomIndex);
-        carouselImage.src = imagePaths[randomIndex];
+        carouselImage.src = imagePaths[location][randomIndex];
     };
 
     exploreButton.addEventListener('click', loadImages);
+    locationSelect.addEventListener('change', loadImages);
 
     const moveCarousel = (direction) => {
         switch (direction) {
@@ -53,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateCarousel = () => {
         const index = currentPosition.row * 3 + currentPosition.col;
-        carouselImage.src = imagePaths[index];
+        carouselImage.src = imagePaths[currentLocation][index];
         miniMapCells.forEach((cell, i) => {
             cell.classList.toggle('active', i === index);
         });
@@ -84,5 +109,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load images when the page is loaded
     loadImages();
 
-   
+
 });
