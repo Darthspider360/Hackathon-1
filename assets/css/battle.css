@@ -106,6 +106,10 @@ section {
     background-color: transparent;
 }
 
+#defButton {
+    z-index: 10;
+}
+
 #fleeButton {
     color: white;
 }
