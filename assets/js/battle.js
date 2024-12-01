@@ -126,7 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let heroAtk = dice1;
         if (hero.pow >= 2) heroAtk += dice2;
         if (hero.pow >= 3) heroAtk += dice3;
-        if (hero.pow >= 4) heroAtk = heroAtk*1.5;
+        if (hero.pow >= 4) heroAtk = heroAtk*2;
+        if (hero.pow > hero.atk) {
+            hero.pow--;
+            updatePowBar();
+        }
+
 
         let enemyAtk = dice4;
         if (currentEnemy.atk >= 2) enemyAtk += dice5;
@@ -143,16 +148,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const defButton = document.getElementById('defButton');
     defButton.addEventListener('click', () => {
-        // Example action: increase DEF by 1
-        hero.def += 1;
-        console.log(`DEF increased to ${hero.def}`);
+        let dice1 = rollDice();
+        if (dice1 == 6) dice1 *= 2; // critical block
+        let dice2 = rollDice();
+        if (dice2 == 6) dice2 *= 2; // critical block
+        let dice3 = rollDice();
+        if (dice3 == 6) dice3 *= 2; // critical block
+
+        let heroDef = dice1;
+        if (hero.pow >= 2) heroDef += dice2;
+        if (hero.pow >= 3) heroDef += dice3;
+
+        let dice4 = rollDice();
+        if (dice4 == 6) dice4 *= 2; // critical hit
+        let dice5 = rollDice();
+        if (dice5 == 6) dice5 *= 2; // critical hit
+        let dice6 = rollDice();
+        if (dice6 == 6) dice6 *= 2; // critical hit
+
+        let enemyAtk = dice4;
+        if (currentEnemy.atk >= 2) enemyAtk += dice5;
+        if (currentEnemy.atk >= 3) enemyAtk += dice6;
+
+        console.log(`Hero DEF: ${heroDef}`);
+        console.log(`Enemy ATK: ${enemyAtk}`);
+        showBattleMessage(`Hero blocks with ${heroDef} power! Enemy attacks with ${enemyAtk} power!`);
+
+        // Stack a power level if hero blocks
+        if (hero.pow < 4) {
+            hero.pow += 1;
+            updatePowBar();
+        }
+
+        // Reduce hero HP by the remaining enemy attack after block
+        enemyAtk = Math.max(0, enemyAtk - heroDef);
+        reduceHp(enemyAtk);
     });
 
     const healButton = document.getElementById('healButton');
     healButton.addEventListener('click', () => {
         if (hero.potion > 0) {
             hero.potion -= 1;
-            hero.currentHp = Math.min(hero.hp, hero.currentHp + 50);
+            hero.currentHp = Math.min(hero.hp, hero.currentHp + 40);
             updateHpBar();
             updatePotionCount();
             console.log(`Healed! Current HP: ${hero.currentHp}, Potions left: ${hero.potion}`);
