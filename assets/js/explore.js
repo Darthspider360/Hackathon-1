@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve hero object from local storage
+    // Retrieve hero and boss objects from local storage
     const hero = JSON.parse(localStorage.getItem('hero'));
     const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
 
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'assets/images/bosscastle/8 trap 3.png',
             'assets/images/bosscastle/9 vampire .png',
             'assets/images/bosscastle/10 herotomb .png',
+            'assets/images/bosscastle/11 goodending .png',
         ],
         [
             'assets/images/mt/mt-1-center path-top-cloggy.png',
@@ -142,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateCarousel = () => {
         let index = currentPosition.row * 3 + currentPosition.col;
         if (hero.currentHp == 0) index = 9; // Show hero tomb image if hero is dead
+        if (boss.currentHp == 0) index = 10; // Show good ending image if boss is defeated
         carouselImage.src = imagePaths[currentLocation][index];
         miniMapCells.forEach((cell, i) => {
             cell.classList.toggle('active', i === index);
@@ -175,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `);
 
             document.getElementById('fight-boss').addEventListener('click', () => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
                 localStorage.setItem('currentEnemy', 'boss');
                 localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
                 localStorage.setItem('currentImageIndex', index);
@@ -183,16 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('cancel').addEventListener('click', hideDialogueBubble);
         } else if (carouselImage.src.includes("deathknight")) {
+            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
             localStorage.setItem('currentEnemy', 'deathknight');
             localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
             localStorage.setItem('currentImageIndex', index);
             window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("eyeball")) {
+            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
             localStorage.setItem('currentEnemy', 'eyeball');
             localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
             localStorage.setItem('currentImageIndex', index);
             window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("vampire")) {
+            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
             localStorage.setItem('currentEnemy', 'vampire');
             localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
             localStorage.setItem('currentImageIndex', index);
@@ -257,8 +263,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 hero.potion = defaultHero.potion;
                 hero.currentHp = hero.hp;
                 currentPosition = { row: 2, col: 0 }; // Set hero to starting position
+                boss.currentHp = boss.hp; // Revive boss to full
                 localStorage.setItem('hero', JSON.stringify(hero));
+                localStorage.setItem('boss', JSON.stringify(boss));
                 localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+                hideDialogueBubble(); // Hide the dialogue bubble
+                location.reload();
+            });
+        } else if (carouselImage.src.includes("goodending")) {
+            showDialogueBubble(`
+                <p>After a long fierce battle, the Demon is finally defeated and Hero returned back to the hometown, waiting for the next journey....</p>
+                <button id="restart-trial">Restart the Trial</button>
+            `);
+
+            document.getElementById('restart-trial').addEventListener('click', () => {
+                hero.potion = defaultHero.potion;
+                hero.currentHp = hero.hp;
+                currentPosition = { row: 2, col: 0 }; // Set hero to starting position
+                boss.currentHp = boss.hp; // Revive boss to full
+                localStorage.setItem('hero', JSON.stringify(hero));
+                localStorage.setItem('boss', JSON.stringify(boss));
+                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+                hideDialogueBubble(); // Hide the dialogue bubble
                 location.reload();
             });
         } else {
@@ -352,9 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (result === 'You Won') {
                         console.log('Player won the minigame');
                         if (isAngelTrial) {
-                            hero.potion += 1;
+                            hero.potion += 3; // Adjusted reward from 1 to 3
                             updateHeroPotion();
-                            console.log('You won a potion!');
+                            console.log('You won 3 potions!');
                         }
                     } else {
                         console.log('Player lost the minigame');

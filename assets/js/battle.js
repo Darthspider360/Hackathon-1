@@ -262,6 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showBattleMessage('You defeated the enemy!');
             setTimeout(() => {
                 localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                if (currentEnemyType === 'boss') {
+                    localStorage.setItem('boss', JSON.stringify(currentEnemy)); // Save boss state
+                }
                 localStorage.setItem('justFinishedBattle', 'true');
                 window.location.href = 'explore.html';
             }, 2000);
@@ -272,6 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('justFinishedBattle', 'true');
                 window.location.href = 'explore.html';
             }, 2000);
+        } else {
+            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state after each battle
         }
     };
 
