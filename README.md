@@ -1,5 +1,5 @@
-# **TITLE**
-
+# **Legend of the Eternal Empire**
+A web based roleplay game where you adventure to save the lands from being corrupted by the Eternal Empire! Testing your fighting skill, logica knowledge and luck!
 <br>
 
 ![Screenshot of mockup]()
@@ -19,8 +19,6 @@
     - [Main Content](#main-content)
     - [Footer](#footer)
 - [Responsivity](#responsivity)
-    - [Mobile Layout](#mobile-layout)
-    - [Tablet Layout](#tablet-layout)
 - [Future Features](#future-features)
     - [Future Changes](#future-changes)
 - [Testing](#testing)
@@ -44,15 +42,7 @@
 
 ### Wireframes
 
-
-#### Phone 
-
-
-#### Tablet
-
-
-#### Laptop & PC 
-
+![An image of hand drawn wireframe that should be ther same accross all devices](assets/images/readMe/wireframes.jpg)
 
 ### Colour Scheme
 
@@ -68,6 +58,11 @@
 
 ### Main Content
 
+#### Main Map
+
+We asked AI to create the background for most of the pages, starting with the main map for the land.
+
+![An image of Ai creating the main map image](assets/images/readMe/ai-map.png)
 
 
 ### Footer
@@ -76,17 +71,14 @@
 ## Responsivity 
 
 
-### Mobile Layout
-
-
-### Tablet Layout
-
 
 ## Future Features
-
+- each section will have their on questline
+- adding a shop he better equipt the user
 
 ### Future Changes
-
+- Icons will be in the correct places
+- maps will be centered on the screen
 
 ## Testing
 
