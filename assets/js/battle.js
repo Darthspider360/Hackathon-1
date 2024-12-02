@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showBattleMessage('You successfully fled the battle!');
             setTimeout(() => {
                 localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                localStorage.setItem('justFledBattle', 'true');
                 window.location.href = 'explore.html';
             }, 2000);
         } else {

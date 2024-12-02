@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let justFinishedBattle = localStorage.getItem('justFinishedBattle') === 'true';
+    let justFledBattle = localStorage.getItem('justFledBattle') === 'true';
 
     const defaultHero = {
         hp: 100,
@@ -160,6 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if (justFledBattle) {
+            justFledBattle = false;
+            localStorage.setItem('justFledBattle', 'false');
+            return;
+        }
+
         if (carouselImage.src.includes("bossgate")) {
             showDialogueBubble(`
                 <p>Do you want to fight the final Demon Boss? Current HP: ${boss.currentHp}</p>
@@ -177,6 +184,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('cancel').addEventListener('click', hideDialogueBubble);
         } else if (carouselImage.src.includes("deathknight")) {
             localStorage.setItem('currentEnemy', 'deathknight');
+            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+            localStorage.setItem('currentImageIndex', index);
+            window.location.href = 'battle.html';
+        } else if (carouselImage.src.includes("eyeball")) {
+            localStorage.setItem('currentEnemy', 'eyeball');
+            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+            localStorage.setItem('currentImageIndex', index);
+            window.location.href = 'battle.html';
+        } else if (carouselImage.src.includes("vampire")) {
+            localStorage.setItem('currentEnemy', 'vampire');
             localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
             localStorage.setItem('currentImageIndex', index);
             window.location.href = 'battle.html';
