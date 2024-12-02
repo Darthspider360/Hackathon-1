@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pow: 1,
     };
 
+    //to stage another push to github
     const hero = JSON.parse(localStorage.getItem('hero')) || defaultHero;
     const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
 

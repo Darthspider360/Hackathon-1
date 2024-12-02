@@ -1,7 +1,7 @@
 /**
 *working file for battle, please don't touch this file for now!! 
 *for pair programming ask Jeff Chen 29/11/2024-->
-*/
+stage one more push to github*/
 
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve hero object from local storage
