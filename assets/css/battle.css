@@ -106,10 +106,19 @@ section {
     background-color: transparent;
 }
 
+#atkButton {
+    color: red;
+}
+
 #defButton {
+    color: gray;
     z-index: 10;
 }
 
+#healButton {
+    color: green;
+}
+
 #fleeButton {
-    color: white;
+    color: yellow;
 }

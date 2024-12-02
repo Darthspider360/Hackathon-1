@@ -29,7 +29,7 @@ function loadQuestMap(questMap) {
     } else if (questMap === "fort") {
         window.location.href = 'castleMap.html';
     } else if (questMap === "skull") {
-        window.location.href = 'bossMap.html';
+        window.location.href = 'explore.html';
     } 
 }
 
