@@ -168,6 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(`Hero ATK: ${heroAtk}`);
         console.log(`Enemy ATK: ${enemyAtk}`);
+        if (hero.pow >= 4) {
+            showBattleMessage(`Hero attacks with ${heroAtk} power! Enemy attacks with ${enemyAtk} power! Critical Hit!`);
+        } else
         showBattleMessage(`Hero attacks with ${heroAtk} power! Enemy attacks with ${enemyAtk} power!`);
         
         // Reduce enemy HP by heroAtk and hero HP by enemyAtk

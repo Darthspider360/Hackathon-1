@@ -94,16 +94,15 @@ The combat system was mainly hand-coded but the code was optimised and cleaned u
 
 ### LightHouse
 
-## Code Validation
 
+
+![lighthouse](assets/Doc/Documents/lighthouse.png)
 ### HTML Validation
-[All html validations can be found here](assets/images/readMe/validations/html)
+![w3c HTML Validation](assets/Doc/Documents/w3chtml.png)
 
 ### CSS Validation
-[All CSS validations can be found here](assets/images/readMe/validations/css)
+![w3c CSS Validation](assets/Doc/Documents/w3ccss.png)
 
-### JS Validation
-[All JS validations can be found here](assets/images/readMe/validations/js)
 
 ## Deployment
 We deployed the site using github and github pages. These are the steps we did:
