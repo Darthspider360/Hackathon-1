@@ -20,7 +20,7 @@
     <!-- bootstrap navbar -->
     <nav class="navbar bg-body-tertiary navbar-custom fixed-top">
         <div class="container-fluid d-flex justify-content-center">
-            <span class="navbar-brand mb-0 h1">title</span>
+            <span class="navbar-brand mb-0 h1">Explore</span>
         </div>
     </nav>
     <main>
@@ -35,10 +35,8 @@
                     <button class="carousel-button" id="carousel-down">&#8659;</button>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-primary" id="explore-button">Explore</button>
-            </div>
-            <div class="d-flex justify-content-center mt-3">
+           
+            <div class="d-flex justify-content-center mt-1">
                 <div class="mini-map">
                     <div class="mini-map-grid">
                         <div class="mini-map-cell" id="cell-0-0"></div>
@@ -52,8 +50,89 @@
                         <div class="mini-map-cell" id="cell-2-2"></div>
                     </div>
                 </div>
+                <div class="ms-3 states">
+                    <div id="hero-hp">HP: 100</div>
+                    <div id="hero-atk">ATK: 1</div>
+                    <span id="hero-potion">Potion: 20</span>
+                    <button id="heal-button">Heal</button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-primary" id="explore-button">Explore</button>
+                <select id="location-select" class="form-select ms-2" style="width: auto;">
+                    <option value="boasscastle">Boss Castle</option>
+                    <option value="mountain">Moutain</option>
+                </select>
+                <button class="btn btn-secondary ms-2" id="test-rps-button">Test RPS Game</button>
+                <button class="btn btn-secondary ms-2" id="test-hangman-button">Test Hangman Game</button>
             </div>
         </section> 
+        <div class="modal fade" id="rps-minigame" tabindex="-1" aria-labelledby="rps-minigame-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rps-minigame-label">Rock Paper Scissors</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="rps-container">
+                            <div class="rps-result_field">
+                                <div class="rps-result_images">
+                                    <span class="rps-user_result">
+                                        <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    </span>
+                                    <span class="rps-cpu_result">
+                                        <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    </span>
+                                </div>
+                                <div class="rps-result">Play</div>
+                            </div>
+                            <div class="rps-option_images">
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    <p>Rock</p>
+                                </span>
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/paper.png" alt="paper" />
+                                    <p>Paper</p>
+                                </span>
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/scissors.png" alt="scissors" />
+                                    <p>Scissors</p>
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="hangman-minigame" tabindex="-1" aria-labelledby="hangman-minigame-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hangman-minigame-label">Hangman Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="guess-wrapper">
+                            <section id="guess-section">Guess a number from 1 to 100</section>
+                            <p class="guess"></p>
+                            <div class="guess-input-field">
+                                <input class="guess-input" type="number" />
+                                <button class="guess-btn">Check</button>
+                            </div>
+                            <p>You have <span class="guess-chances">10</span> chances</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="mt-auto">
         <div class="container d-flex justify-content-center">
@@ -72,6 +151,9 @@
     <script src="assets/js/script.js"></script>
     <!--field explore minimap and battle js-->
     <script src="assets/js/explore.js"></script>
+    <script src="assets/js/battle.js"></script>
+    <!-- minigame
+    <script src="assets/js/minigames.js"></script> -->
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/128240b0e7.js" crossorigin="anonymous"></script>
 

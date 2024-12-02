@@ -50,6 +50,10 @@
     transform: translate(-50%, 100%);
 }
 
+#carousel-left, #carousel-right, #carousel-up, #carousel-down {
+    color: orange;
+}
+
 #main-map {
     background-image: none;
 }
@@ -74,4 +78,165 @@
 
 .mini-map-cell.active {
     background-color: red;
+}
+
+#battle {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#battle .d-flex {
+    gap: 10px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.start-0 {
+    left: 0;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.start-50 {
+    left: 50%;
+}
+
+.translate-middle-x {
+    transform: translateX(-50%);
+}
+
+.top-50 {
+    top: 50%;
+}
+
+.translate-middle-y {
+    transform: translateY(-50%);
+}
+
+.end-0 {
+    right: 0;
+}
+
+#atkButton, #defButton, #healButton, #fleeButton {
+    background-color: transparent;
+}
+
+#fleeButton {
+    color: white;
+}
+
+#fight-boss {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cancel {
+    background-color: yellow;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dialogue-bubble {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.states {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px; /* Adjust this value to match the minimap */
+}
+
+#heal-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.rps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rps-result_field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rps-result_images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rps-option_images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.rps-option_image {
+    cursor: pointer;
+    text-align: center;
+}
+
+.rps-option_image img {
+    width: 50px;
+    height: 50px;
+}
+
+.rps-result {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.close-btn {
+    margin-top: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
