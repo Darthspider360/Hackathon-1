@@ -8,10 +8,22 @@ body {
 }
 
 .navbar-custom {
-    color: #353b3c;
-    background-color: transparent !important;
+    color: #330000;
+    background-color: #ffffff8c !important;
+    font-family: "Amatic SC", sans-serif;
+    font-weight: bold;
 }
 
+p {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: normal;
+    font-size: large;
+}
+
+h1, h2, h3{
+    font-family: "Amatic SC", sans-serif;
+    font-weight: bold;
+}
 
 .btn--big {
     width: 100px;
@@ -29,18 +41,16 @@ body {
     bottom: 300px;
 }
 
+.background {
+    display: flex;
+    justify-content: center;
+}
+
 /* code snippet from https://stackoverflow.com/questions/1909648/stacking-divs-on-top-of-each-other */
 .inner {
     position: absolute;
     display: flex;
     justify-content: center;
-}
-
-.h1{
-    font-family: "Amatic SC", sans-serif;
-    font-size: 5rem;
-    color: black;
-    background-color: #ffffff8c;
 }
 
 /* place holder button */
@@ -53,8 +63,8 @@ body {
 /* combat styling */
 
 #combat-attack-btn, #combat-heal-btn {
-    background: #3498db;
-    color: #fff;
+    background: #eedd99;
+    color: #330000;
     border: none;
     padding: 10px 20px;
     margin: 5px;
@@ -64,7 +74,7 @@ body {
 }
 
 #combat-attack-btn:hover, #combat-heal-btn:hover {
-    background: #2980b9;
+    background: #b6a975;
 }
 
 .combat-modal {
@@ -80,7 +90,7 @@ body {
 }
 
 .combat-modal-content {
-    background: #3e4a5c;
+    background: #f7f4da;
     border-radius: 8px;
     text-align: center;
     padding: 20px;
@@ -93,7 +103,7 @@ body {
     position: absolute;
     top: 10px;
     right: 15px;
-    color: #fff;
+    color: #330000;
     font-size: 24px;
     cursor: pointer;
 }
