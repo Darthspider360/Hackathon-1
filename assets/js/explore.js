@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve hero and boss objects from local storage
-    const hero = JSON.parse(localStorage.getItem('hero'));
+    const defaultHero = {
+        hp: 100,
+        currentHp: 100,
+        atk: 1,
+        def: 1,
+        potion: 3,
+        pow: 1,
+    };
+
+    const hero = JSON.parse(localStorage.getItem('hero')) || defaultHero;
     const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
 
     const updateHeroHp = (amount) => {
@@ -140,15 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let justFinishedBattle = localStorage.getItem('justFinishedBattle') === 'true';
     let justFledBattle = localStorage.getItem('justFledBattle') === 'true';
-
-    const defaultHero = {
-        hp: 100,
-        currentHp: 100,
-        atk: 1,
-        def: 1,
-        potion: 3,
-        pow: 1,
-    };
 
     const updateCarousel = () => {
         let index = currentPosition.row * 3 + currentPosition.col;
