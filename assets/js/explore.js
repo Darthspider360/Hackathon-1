@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Retrieve hero object from local storage
     const hero = JSON.parse(localStorage.getItem('hero'));
     const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
+    const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
 
     const updateHeroHp = (amount) => {
         hero.currentHp = Math.max(0, hero.currentHp - amount);
@@ -39,9 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'assets/images/bosscastle/1 angel .png',
             'assets/images/bosscastle/3 deathknight .png',
             'assets/images/bosscastle/2 bossgate .png',
+            'assets/images/bosscastle/2 bossgate .png',
             'assets/images/bosscastle/4 eyeball .png',
             'assets/images/bosscastle/6 trap 1.png',
             'assets/images/bosscastle/7 trap 2.png',
+            'assets/images/bosscastle/5 puzzle 1.png',
             'assets/images/bosscastle/5 puzzle 1.png',
             'assets/images/bosscastle/8 trap 3.png',
             'assets/images/bosscastle/9 vampire .png',
@@ -66,10 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPosition = {
         row: 2,
         col: 0
+        col: 0
     };
 
     const loadImages = () => {
         const location = locationSelect.value === 'mountain' ? locations.mountain : locations.bosscastle;
+        carouselImage.src = imagePaths[location][6]; // 6 is the index of the bosscastle image and start point
         carouselImage.src = imagePaths[location][6]; // 6 is the index of the bosscastle image and start point
     };
 
@@ -77,6 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     locationSelect.addEventListener('change', loadImages);
 
     const moveCarousel = (direction) => {
+        if (carouselImage.src.includes("trap")) {
+            const damage = Math.floor(Math.random() * 60) + 1;
+            updateHeroHp(damage);
+            hideDialogueBubble();
+        }
+
         if (carouselImage.src.includes("trap")) {
             const damage = Math.floor(Math.random() * 60) + 1;
             updateHeroHp(damage);
@@ -141,6 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateCarousel = () => {
         let index = currentPosition.row * 3 + currentPosition.col;
         if (hero.currentHp == 0) index = 9; // Show hero tomb image if hero is dead
+        let index = currentPosition.row * 3 + currentPosition.col;
+        if (hero.currentHp == 0) index = 9; // Show hero tomb image if hero is dead
         carouselImage.src = imagePaths[currentLocation][index];
         miniMapCells.forEach((cell, i) => {
             cell.classList.toggle('active', i === index);
@@ -162,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (carouselImage.src.includes("bossgate")) {
             showDialogueBubble(`
+                <p>Do you want to fight the final Demon Boss? Current HP: ${boss.currentHp}</p>
                 <p>Do you want to fight the final Demon Boss? Current HP: ${boss.currentHp}</p>
                 <button id="fight-boss">Yes</button>
                 <button id="cancel">Not now</button>
@@ -193,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             document.getElementById('ignore-trap').addEventListener('click', () => {
+                const damage = Math.floor(Math.random() * 60) + 1;
                 const damage = Math.floor(Math.random() * 60) + 1;
                 updateHeroHp(damage);
                 hideDialogueBubble();
@@ -294,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadImages();
 
     const playMinigame = (isAngelTrial = false) => {
+    const playMinigame = (isAngelTrial = false) => {
         const rpsMinigame = new bootstrap.Modal(document.getElementById('rps-minigame'));
         rpsMinigame.show();
 
@@ -302,6 +318,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultText = document.querySelector('.rps-result');
         const optionImages = document.querySelectorAll('.rps-option_image img');
 
+        const resetGame = () => {
+            userResultImg.src = 'assets/minigame-images/rps-images/rock.png';
+            cpuResultImg.src = 'assets/minigame-images/rps-images/rock.png';
+            resultText.textContent = 'Play';
+        };
+
+        const playRound = (userChoice) => {
+            const choices = ['rock', 'paper', 'scissors'];
+            const cpuChoice = choices[Math.floor(Math.random() * 3)];
+            cpuResultImg.src = `assets/minigame-images/rps-images/${cpuChoice}.png`;
         const resetGame = () => {
             userResultImg.src = 'assets/minigame-images/rps-images/rock.png';
             cpuResultImg.src = 'assets/minigame-images/rps-images/rock.png';
@@ -325,7 +351,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 result = 'You Lost';
             }
+            let result;
+            if (userChoice === cpuChoice) {
+                result = 'Draw';
+            } else if (
+                (userChoice === 'rock' && cpuChoice === 'scissors') ||
+                (userChoice === 'paper' && cpuChoice === 'rock') ||
+                (userChoice === 'scissors' && cpuChoice === 'paper')
+            ) {
+                result = 'You Won';
+            } else {
+                result = 'You Lost';
+            }
 
+            resultText.textContent = result;
             resultText.textContent = result;
 
             if (result === 'Draw') {
@@ -362,7 +401,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resetGame(); // Reset the game when the modal is shown
     };
+            if (result === 'Draw') {
+                resultText.textContent = 'Play Again';
+            } else {
+                setTimeout(() => {
+                    if (result === 'You Won') {
+                        console.log('Player won the minigame');
+                        if (isAngelTrial) {
+                            hero.potion += 1;
+                            updateHeroPotion();
+                            console.log('You won a potion!');
+                        }
+                    } else {
+                        console.log('Player lost the minigame');
+                        if (!isAngelTrial) {
+                            const damage = Math.floor(Math.random() * 24) + 1;
+                            updateHeroHp(damage);
+                        }
+                    }
+                    rpsMinigame.hide();
+                    resetGame();
+                }, 2000); // Delay hiding the modal to allow result display
+            }
+        };
 
+        optionImages.forEach((image) => {
+            image.addEventListener('click', (e) => {
+                const userChoice = e.target.alt.toLowerCase();
+                userResultImg.src = e.target.src;
+                playRound(userChoice);
+            });
+        });
+
+        resetGame(); // Reset the game when the modal is shown
+    };
+
+    const playHangmanGame = (isAngelTrial = false) => {
     const playHangmanGame = (isAngelTrial = false) => {
         const hangmanMinigame = new bootstrap.Modal(document.getElementById('hangman-minigame'));
         hangmanMinigame.show();
@@ -375,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resetGame = () => {
             randomNum = Math.floor(Math.random() * 100); // Generate a new random number
             chance = 8; // Reset chances to 5
+            chance = 8; // Reset chances to 5
             input.disabled = false; // Enable input field
             remainChances.textContent = chance; // Update chances display
             guess.textContent = ""; // Clear guess display
@@ -384,6 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         let randomNum = Math.floor(Math.random() * 100);
+        let chance = 8; // Set initial chances to 5
         let chance = 8; // Set initial chances to 5
 
         checkButton.addEventListener("click", () => {
@@ -398,6 +474,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (inputValue == randomNum) {
                 [guess.textContent, input.disabled] = ["Congrats! You found the number.", true];
                 [checkButton.textContent, guess.style.color] = ["Replay", "#27ae60"];
+                if (isAngelTrial && hero.atk < 3) {
+                    hero.atk += 1;
+                    updateHeroAtk();
+                    console.log('Your attack increased!');
+                    if (hero.atk >= 3) {
+                        document.getElementById('sword-trial').disabled = true;
+                    }
+                }
                 if (isAngelTrial && hero.atk < 3) {
                     hero.atk += 1;
                     updateHeroAtk();
@@ -422,6 +506,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 [guess.textContent, guess.style.color] = ["You lost the game", "#e74c3c"];
             }
         });
+
+        resetGame(); // Reset the game when the modal is shown
 
         resetGame(); // Reset the game when the modal is shown
     };
