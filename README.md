@@ -44,12 +44,20 @@ A web based roleplay game where you adventure to save the lands from being corru
 
 ![An image of hand drawn wireframe that should be ther same accross all devices](assets/images/readMe/wireframes.jpg)
 
-### Colour Scheme
+### Colour Scheme and Images
+
+The colour scheme chagnes depending on the location you enter. The main map colour scheme is that of an old vintage map colour to make you feel like you are looking at an old map. Each icon on the map reflects its own colour scheme to set the tone before entering its quest line map. This is to help with the immersion despite it only being a web based RPG. These colour schemes were also paired with their backgorund images to futer enhance this.
+
+![A screenshot showing the colour scheme and image collection for the project](assets/images/readMe/colour-schemes&backgrounds.png)
+
+
 
 ### Typography 
+When choosing the typography, we wanted to reflect the handmade feeling of Dungeons and Dragons and thus tried to find a hand written "story teller" type font. These were the top choices:
 
+![font choices](assets/images/readMe/font.png)
 
-### Images
+From here, we chose Amatic SC as it was both easy to read but felt as if it were still handwritten.
 
 
 ## Page Features
@@ -65,7 +73,9 @@ We asked AI to create the background for most of the pages, starting with the ma
 ![An image of Ai creating the main map image](assets/images/readMe/ai-map.png)
 
 
-### Footer
+Using this image we added icons from font awesome that reflected the quest areas. 
+
+![A screenshot of the icons on the map](assets/images/readMe/icons.png)
 
 
 ## Responsivity 
