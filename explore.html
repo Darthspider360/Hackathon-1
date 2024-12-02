@@ -64,6 +64,7 @@
                     <option value="mountain">Moutain</option>
                 </select>
                 <button class="btn btn-secondary ms-2" id="test-rps-button">Test RPS Game</button>
+                <button class="btn btn-secondary ms-2" id="test-hangman-button">Test Hangman Game</button>
             </div>
         </section> 
         <div class="modal fade" id="rps-minigame" tabindex="-1" aria-labelledby="rps-minigame-label" aria-hidden="true">
@@ -101,6 +102,30 @@
                                 </span>
                             </div>
                         </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="hangman-minigame" tabindex="-1" aria-labelledby="hangman-minigame-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hangman-minigame-label">Hangman Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="guess-wrapper">
+                            <section id="guess-section">Guess a number from 1 to 100</section>
+                            <p class="guess"></p>
+                            <div class="guess-input-field">
+                                <input class="guess-input" type="number" />
+                                <button class="guess-btn">Check</button>
+                            </div>
+                            <p>You have <span class="guess-chances">10</span> chances</p>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

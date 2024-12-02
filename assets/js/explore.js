@@ -138,6 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             document.getElementById('cancel').addEventListener('click', hideDialogueBubble);
+        } else if (carouselImage.src.includes("trap")) {
+            showDialogueBubble(`
+                <p>Oops, you encountered a trap!</p>
+                <button id="dodge-trap">Dodge the trap</button>
+                <button id="ignore-trap">Ignore</button>
+            `);
+
+            document.getElementById('dodge-trap').addEventListener('click', () => {
+                hideDialogueBubble();
+                playMinigame();
+            });
+
+            document.getElementById('ignore-trap').addEventListener('click', () => {
+                const damage = Math.floor(Math.random() * 12) + 1;
+                updateHeroHp(damage);
+                hideDialogueBubble();
+            });
         } else {
             hideDialogueBubble();
         }
@@ -236,6 +253,59 @@ document.addEventListener('DOMContentLoaded', () => {
         playRound();
     };
 
-    document.getElementById('test-rps-button').addEventListener('click', playMinigame);
+    const playHangmanGame = () => {
+        const hangmanMinigame = new bootstrap.Modal(document.getElementById('hangman-minigame'));
+        hangmanMinigame.show();
 
+        const input = document.querySelector('.guess-input');
+        const guess = document.querySelector('.guess');
+        const checkButton = document.querySelector('.guess-btn');
+        const remainChances = document.querySelector('.guess-chances');
+
+        const resetGame = () => {
+            randomNum = Math.floor(Math.random() * 100); // Generate a new random number
+            chance = 5; // Reset chances to 5
+            input.disabled = false; // Enable input field
+            remainChances.textContent = chance; // Update chances display
+            guess.textContent = ""; // Clear guess display
+            guess.style.color = "#333"; // Reset guess text color
+            input.value = ""; // Clear input field
+            checkButton.textContent = "Check"; // Reset button text
+        };
+
+        let randomNum = Math.floor(Math.random() * 100);
+        let chance = 5; // Set initial chances to 5
+
+        checkButton.addEventListener("click", () => {
+            if (input.disabled) {
+                resetGame();
+                return;
+            }
+
+            chance--;
+            let inputValue = input.value;
+
+            if (inputValue == randomNum) {
+                [guess.textContent, input.disabled] = ["Congrats! You found the number.", true];
+                [checkButton.textContent, guess.style.color] = ["Replay", "#27ae60"];
+            } else if (inputValue > randomNum && inputValue < 100) {
+                [guess.textContent, remainChances.textContent] = ["Your guess is high", chance];
+                guess.style.color = "#333";
+            } else if (inputValue < randomNum && inputValue > 0) {
+                [guess.textContent, remainChances.textContent] = ["Your guess is low", chance];
+                guess.style.color = "#333";
+            } else {
+                [guess.textContent, remainChances.textContent] = ["Your number is invalid", chance];
+                guess.style.color = "#e74c3c";
+            }
+
+            if (chance == 0) {
+                [checkButton.textContent, input.disabled, inputValue] = ["Replay", true, ""];
+                [guess.textContent, guess.style.color] = ["You lost the game", "#e74c3c"];
+            }
+        });
+    };
+
+    document.getElementById('test-rps-button').addEventListener('click', playMinigame);
+    document.getElementById('test-hangman-button').addEventListener('click', playHangmanGame);
 });
