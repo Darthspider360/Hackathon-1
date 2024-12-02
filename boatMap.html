@@ -19,9 +19,12 @@
 
 <body class="d-flex flex-column min-vh-200" id="main-map">
     <!-- bootstrap navbar -->
-    <nav class="navbar bg-body-tertiary navbar-custom fixed-top">
-        <div class="container-fluid d-flex justify-content-center">
-            <span class="navbar-brand mb-0 h1">Legend of the Eternal Empire: Sea's of Erran</span>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+        <div class="container-fluid">
+            <h1>Legend of the Eternal Empire: Sea's of Erran</h1>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#storyModal">
+                <i class="fa-solid fa-book-open" style="color: #330000;"></i>
+            </button>
         </div>
     </nav>
     <main>
@@ -112,14 +115,29 @@
 
             <button class="close-btn">Close</button>
         </div>
-    </main>
-    <!-- <footer class="mt-auto">
-        <div class="container d-flex justify-content-center">
-            <button data-type="back" class="btn btn--big" type="submit" id="backButton">
-                <i class="fa-solid fa-circle-left" style="color: #330000;"></i>
-            </button>
+        <!-- Story Modal -->
+        <div class="modal fade" id="storyModal" tabindex="-1" aria-labelledby="storyModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="storyModal">The Sea's of Erran</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Approaching the island of Erran, you see the dark clouds and hear the thunderous waves
+                            crashing against the jagged rocks. The crew is uneasy, but you know that the Eternal Empire
+                            is here. Suddenly, a massive wave crashes against the ship, and you are thrown overboard
+                            only to find yourself face to face with the challenges of your foes. They were expecting you.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal">Exit</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer> -->
+    </main>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
