@@ -1,4 +1,4 @@
-/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
 
 /* General styles */
@@ -26,6 +26,7 @@ body {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     flex-wrap: wrap;
+    bottom: 300px;
 }
 
 /* code snippet from https://stackoverflow.com/questions/1909648/stacking-divs-on-top-of-each-other */
@@ -35,7 +36,10 @@ body {
     justify-content: center;
 }
 
-
+.h1{
+    font-family: "Amatic SC", sans-serif;
+    font-size: 5rem;
+}
 
 /* place holder button */
 #quest{
