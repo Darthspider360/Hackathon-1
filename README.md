@@ -2,7 +2,7 @@
 A web based roleplay game where you adventure to save the lands from being corrupted by the Eternal Empire! Testing your fighting skill, logica knowledge and luck!
 <br>
 
-![Screenshot of mockup]()
+![Screenshot of mockup](assets/Doc/Documents/gameplay.png)
 ---
 
 ## **Contents**
@@ -52,10 +52,12 @@ From here, we chose Amatic SC as it was both easy to read but felt as if it were
 
 
 ## Page Features
-
-
+This RPG is composed by 4 main page features: they are main map, field map, battle map and minigames. main map serves main story, field map provide small areas and events for adventure activities, battle page serves intensive and strategical turn-based battle theme with a variety of mythical creatures, and minigames are for resolving puzzles and take impact on game flows. 
 
 ### Main Content
+#### Role of AI
+The Codepilot has provided majority of images like spooky castle, mythiscal creatures and event themes. AI also served as a major assistant coder follow developer's thoughts. Majority of time developer command AI for compose a robust logic and very few bugs throguh JavaScript and only in small occassions Human needs to take over to remove or trim some overdosed code from AI or ask AI to mitigate bugs found. However when the codebase keep growing, AI does show some performance bottleneck, but in this scale of project, AI is still proven a robust tool for developer.  
+
 
 #### Main Map
 
@@ -76,6 +78,9 @@ Using this image we added icons from font awesome that reflected the quest areas
 ## Future Features
 - each section will have their on questline
 - adding a shop he better equipt the user
+- add more maps for explore and expand storyline
+- add more minigame puzzles 
+- add more events 
 
 ### Future Changes
 - Icons will be in the correct places
@@ -105,3 +110,4 @@ We deployed the site using github and github pages. These are the steps we did:
 
 ## Credits
 - Amy for the README Layout idea
+- Souls like games 
