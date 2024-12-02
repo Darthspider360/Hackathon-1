@@ -5,16 +5,16 @@ button {
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
-    color: #fff;
+    color: #330000;
     border: none;
     outline: none;
     cursor: pointer;
     border-radius: 4px;
-    background: #5E63BA;
+    background: #f7f4da;
     transition: background 0.4s ease;
 }
 button:hover {
-    background: #8286c9;
+    background: #b6a975;
 }
 button[disabled] {
     pointer-events: none;
@@ -28,7 +28,7 @@ button[disabled] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
+    background: #aa9966;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -46,7 +46,7 @@ button[disabled] {
 .guess-wrapper {
     padding: 30px 40px;
     border-radius: 12px;
-    background: #fff;
+    background: #f7f4da;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -54,11 +54,11 @@ button[disabled] {
 .guess-wrapper #guess-section {
     font-size: 18px;
     font-weight: 400;
-    color: #333;
+    color: #330000;
 }
 
 .guess-wrapper p {
-    color: #333;
+    color: #330000;
     margin-top: 10px;
 }
 
@@ -81,9 +81,9 @@ button[disabled] {
 
 .guess-input-field input {
     text-align: center;
-    color: #707070;
+    color: #330000;
     width: 110px;
-    border: 1px solid #aaa;
+    border: 1px solid #f7f4da;
 }
 
 input::-webkit-inner-spin-button,
@@ -97,8 +97,8 @@ input::-webkit-outer-spin-button {
 
 .guess-input-field button {
     border: none;
-    background: #4a98f7;
-    color: #fff;
+    background: #eedd99;
+    color: #330000;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -110,14 +110,14 @@ input::-webkit-outer-spin-button {
 /***ROCK PAPER SCISSORS MODAL***/
 
 ::selection {
-    color: #fff;
-    background-color: #7d2ae8;
+    color: #330000;
+    background-color: #f7f4da;
 }
 
 .rps-container {
     padding: 2rem 7rem;
     border-radius: 14px;
-    background: #fff;
+    background: #f7f4da;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -163,7 +163,7 @@ input::-webkit-outer-spin-button {
 .rps-result {
     text-align: center;
     font-size: 2rem;
-    color: #7d2ae8;
+    color: #330000;
     margin-top: 1.5rem;
 }
 
@@ -204,7 +204,7 @@ input::-webkit-outer-spin-button {
 }
 
 .rps-option_image p {
-    color: #7d2ae8;
+    color: #330000;
     font-size: 1.235rem;
     margin-top: 1rem;
     pointer-events: none;
