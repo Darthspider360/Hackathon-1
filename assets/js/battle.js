@@ -4,17 +4,15 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const hero = {
+    // Retrieve hero object from local storage
+    const hero = JSON.parse(localStorage.getItem('hero')) || {
         hp: 100,
         currentHp: 100,
         atk: 1,
         def: 1,
-        potion: 20,
+        potion: 3,
         pow: 1, 
     };
-
-    // Save hero object to local storage
-    localStorage.setItem('hero', JSON.stringify(hero));
 
     hero.pow = hero.atk;
 
@@ -23,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 300,
         atk: 3,
         def: 1,
-        img: 'assets/images/battle/testboss.png'
+        img: 'assets/images/battle/testboss.png',
+        flee: 0.1,
     };
 
     const vampire = {
@@ -31,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 200,
         atk: 2,
         def: 1,
-        img: 'assets/images/bosscastle/vampire.png'
+        img: 'assets/images/bosscastle/9 vampire .png',
+        flee: 0.3,
     };
 
     const deathknight = {
@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 150,
         atk: 2,
         def: 1,
-        img: 'assets/images/bosscastle/deathknight.png'
+        img: 'assets/images/bosscastle/3 deathknight .png',
+        flee: 0.5,
     };
 
     const eyeball = {
@@ -47,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 100,
         atk: 1,
         def: 1,
-        img: 'assets/images/bosscastle/eyeball.png'
+        img: 'assets/images/bosscastle/4 eyeball .png',
+        flee: 0.7,
     };
 
     const angel = {
@@ -55,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 500,
         atk: 3,
         def: 1,
-        img: 'assets/images/bosscastle/angel.png'
+        img: 'assets/images/bosscastle/1 angel .png',
+        flee: 0.8,
     };
-
 
     const enemies = { boss, vampire, deathknight, eyeball, angel };
 
@@ -69,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const enemyImage = document.querySelector('#battle img[alt="Enemy"]');
     const enemyTypeSelect = document.getElementById('enemyType');
 
-    let currentEnemy;
+    const currentEnemyType = localStorage.getItem('currentEnemy') || 'boss';
+    let currentEnemy = enemies[currentEnemyType];
 
     const updateHpBar = () => {
         const hpPercentage = (hero.currentHp / hero.hp) * 100;
@@ -93,10 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateEnemyImage = () => {
-        const selectedEnemy = enemyTypeSelect.value;
-        currentEnemy = enemies[selectedEnemy];
         enemyImage.src = currentEnemy.img;
-        updateEnemyHpBar(currentEnemy.currentHp);
+        updateEnemyHpBar(currentEnemy.currentHp); // Ensure the correct parameter is passed
     };
 
     const updateEnemyHpBar = (hp) => {
@@ -172,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reduce enemy HP by heroAtk and hero HP by enemyAtk
         reduceEnemyHp(heroAtk);
         reduceHp(enemyAtk);
+        endBattle();
     });
 
     const defButton = document.getElementById('defButton');
@@ -211,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reduce hero HP by the remaining enemy attack after block
         enemyAtk = Math.max(0, enemyAtk - heroDef);
         reduceHp(enemyAtk);
+        endBattle();
     });
 
     const healButton = document.getElementById('healButton');
@@ -228,8 +231,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fleeButton = document.getElementById('fleeButton');
     fleeButton.addEventListener('click', () => {
-        // Empty click event listener
+        const fleeSuccess = Math.random() < currentEnemy.flee;
+        if (fleeSuccess) {
+            showBattleMessage('You successfully fled the battle!');
+            setTimeout(() => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                localStorage.setItem('justFledBattle', 'true');
+                window.location.href = 'explore.html';
+            }, 2000);
+        } else {
+            let dice4 = rollDice();
+            if (dice4 == 6) dice4 *= 2; // critical hit
+            let dice5 = rollDice();
+            if (dice5 == 6) dice5 *= 2; // critical hit
+            let dice6 = rollDice();
+            if (dice6 == 6) dice6 *= 2; // critical hit
+
+            let enemyAtk = dice4;
+            if (currentEnemy.atk >= 2) enemyAtk += dice5;
+            if (currentEnemy.atk >= 3) enemyAtk += dice6;
+
+            const damage = Math.floor(enemyAtk / 2);
+            reduceHp(damage);
+            showBattleMessage(`Flee failed! You took ${damage} damage.`);
+        }
     });
+
+    const endBattle = () => {
+        if (currentEnemy.currentHp === 0) {
+            showBattleMessage('You defeated the enemy!');
+            setTimeout(() => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                if (currentEnemyType === 'boss') {
+                    localStorage.setItem('boss', JSON.stringify(currentEnemy)); // Save boss state
+                }
+                localStorage.setItem('justFinishedBattle', 'true');
+                window.location.href = 'explore.html';
+            }, 2000);
+        } else if (hero.currentHp === 0) {
+            showBattleMessage('You were defeated!');
+            setTimeout(() => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                localStorage.setItem('justFinishedBattle', 'true');
+                window.location.href = 'explore.html';
+            }, 2000);
+        } else {
+            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state after each battle
+        }
+    };
 
     enemyTypeSelect.addEventListener('change', updateEnemyImage);
 
