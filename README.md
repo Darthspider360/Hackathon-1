@@ -26,22 +26,23 @@ A web based roleplay game where you adventure to save the lands from being corru
 ### Naming
 Legend of the Eternal Empire
 ### User Stories 
--I can engage in boss battles when I click on specific locations, so that I can face greater challenges and earn bigger rewards.
--I can engage in basic combat with enemies,so that I can defeat them and progress further in the game.
--I can view my health, damage, level, and money stats in real-time, so that I can track my progress and make decisions during the game.
--When enter a location, I will see a 3x3 or 4x4 map so I can freely explore and randomly encounter an event when I click on a direction, so it can be several events or battles in the way until the map is fully explored
+- I can engage in boss battles when I click on specific locations, so that I can face greater challenges and earn bigger rewards.
+- I can engage in basic combat with enemies,so that I can defeat them and progress further in the game.
+- I can view my health, damage, level, and money stats in real-time, so that - I can track my progress and make decisions during the game.
+- When enter a location, I will see a 3x3 or 4x4 map so I can freely explore and randomly encounter an event when I click on a direction, so it can be several events or battles in the way until the map is fully explored
 So that I experience consequences such as losing money, healing myself, battling with enemies or going back to the map.
--I can click a "Next" button to transition from the blurb page to the interactive map,so that I can begin my journey and explore the world.
--I can see the enemy’s health and damage stats, so that I can strategize my actions during combat.
--I can see a map with multiple clickable locations,so that I can choose where to go and explore the world.
--I can click on a location on the map,so that I can travel to different locations and explore new areas.
--I can participate in a simple mini-game (e.g., Rock-Paper-Scissors) after clicking a location,
+- I can click a "Next" button to transition from the blurb page to the interactive map,so that I can begin my journey and explore the world.
+- I can see the enemy’s health and damage stats, so that I can strategize my actions during combat.
+- I can see a map with multiple clickable locations,so that I can choose where to go and explore the world.
+- I can click on a location on the map,so that I can travel to different locations and explore new areas.
+- I can participate in a simple mini-game (e.g., Rock-Paper-Scissors) after clicking a location,
 so that I can earn rewards when I succeed.
--I can read an introductory blurb with some story information,so that I understand the context of the game and am prepared for the journey ahead.
--I can earn money and rewards from mini-games or defeating enemies,so that I can continue progressing in the game.
--I can gain experience points and level up,
+- I can read an introductory blurb with some story information,so that I understand the context of the game and am prepared for the journey ahead.
+- I can earn money and rewards from mini-games or defeating enemies,so that I can continue progressing in the game.
+- I can gain experience points and level up,
 So that I become stronger by increasing my health and damage.
 
+---
 
 ## User Design
 It’s a single player game, like a story book with plenty fun small puzzle and events leveraging random number, it gives vibes of adventure and fun, which is suitable for a younger age pupil to play but adults certainly can appreciate and enjoy the imaginary artwork by AI.  
@@ -111,6 +112,8 @@ The combat system was mainly hand-coded but the code was optimised and cleaned u
 - maps will be centered on the screen
 
 ## Testing
+
+Testings are completed on Desktop with 4K resolution and 5.5 inch Mobilephones.   
 
 ### LightHouse
 
