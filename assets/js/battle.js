@@ -6,8 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve hero object from local storage
     const hero = JSON.parse(localStorage.getItem('hero')) || {
-    // Retrieve hero object from local storage
-    const hero = JSON.parse(localStorage.getItem('hero')) || {
         hp: 100,
         currentHp: 100,
         atk: 1,
@@ -23,8 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 300,
         atk: 3,
         def: 1,
-        img: 'assets/images/battle/testboss.png',
-        flee: 0.1,
         img: 'assets/images/battle/testboss.png',
         flee: 0.1,
     };
@@ -101,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateEnemyImage = () => {
         enemyImage.src = currentEnemy.img;
-        updateEnemyHpBar(currentEnemy.currentHp); // Ensure the correct parameter is passed
         updateEnemyHpBar(currentEnemy.currentHp); // Ensure the correct parameter is passed
     };
 
