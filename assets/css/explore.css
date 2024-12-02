@@ -133,3 +133,49 @@
 #fleeButton {
     color: white;
 }
+
+#fight-boss {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cancel {
+    background-color: yellow;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dialogue-bubble {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+S
+.states {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px; /* Adjust this value to match the minimap */
+}
+
+#heal-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
