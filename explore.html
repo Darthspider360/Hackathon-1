@@ -63,8 +63,51 @@
                     <option value="boasscastle">Boss Castle</option>
                     <option value="mountain">Moutain</option>
                 </select>
+                <button class="btn btn-secondary ms-2" id="test-rps-button">Test RPS Game</button>
             </div>
         </section> 
+        <div class="modal fade" id="rps-minigame" tabindex="-1" aria-labelledby="rps-minigame-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rps-minigame-label">Rock Paper Scissors</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="rps-container">
+                            <div class="rps-result_field">
+                                <div class="rps-result_images">
+                                    <span class="rps-user_result">
+                                        <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    </span>
+                                    <span class="rps-cpu_result">
+                                        <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    </span>
+                                </div>
+                                <div class="rps-result">Play</div>
+                            </div>
+                            <div class="rps-option_images">
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/rock.png" alt="rock" />
+                                    <p>Rock</p>
+                                </span>
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/paper.png" alt="paper" />
+                                    <p>Paper</p>
+                                </span>
+                                <span class="rps-option_image">
+                                    <img src="assets/minigame-images/rps-images/scissors.png" alt="scissors" />
+                                    <p>Scissors</p>
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="mt-auto">
         <div class="container d-flex justify-content-center">
@@ -85,7 +128,7 @@
     <script src="assets/js/explore.js"></script>
     <script src="assets/js/battle.js"></script>
     <!--minigame-->
-    <script src="assets/js/minigame.js"></script>
+    <script src="assets/js/minigames.js"></script>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/128240b0e7.js" crossorigin="anonymous"></script>
 

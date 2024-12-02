@@ -46,36 +46,29 @@ document.addEventListener('DOMContentLoaded', () => {
             'assets/images/bosscastle/9 vampire .png',
         ],
         [
-        'assets/images/mt/mt-1-center path-top-cloggy.png',
-        'assets/images/mt/mt-2-center path-top-sunny.png',
-        'assets/images/mt/mt-3-center path-mid-sunny.png',
-        'assets/images/mt/mt-4-side path water-low-sunny.png',
-        'assets/images/mt/mt-5-center path-top-rocky.png',
-        'assets/images/mt/mt-6-center path-mid-sunny.png',
-        'assets/images/mt/mt-7-center path-top-rocky-boss.png',
-        'assets/images/mt/mt-8-round path-mid-tree.png',
-        'assets/images/mt/mt-9-side path-mid-no habitation.png',
-        'assets/images/mt/mt-10-side path-mid-no habitation.png',
-        ], 
-        
+            'assets/images/mt/mt-1-center path-top-cloggy.png',
+            'assets/images/mt/mt-2-center path-top-sunny.png',
+            'assets/images/mt/mt-3-center path-mid-sunny.png',
+            'assets/images/mt/mt-4-side path water-low-sunny.png',
+            'assets/images/mt/mt-5-center path-top-rocky.png',
+            'assets/images/mt/mt-6-center path-mid-sunny.png',
+            'assets/images/mt/mt-7-center path-top-rocky-boss.png',
+            'assets/images/mt/mt-8-round path-mid-tree.png',
+            'assets/images/mt/mt-9-side path-mid-no habitation.png',
+            'assets/images/mt/mt-10-side path-mid-no habitation.png',
+        ],
+
 
         // Add more image paths as needed
     ];
     let currentPosition = {
         row: 2,
-        col: 2
+        col: 1
     };
 
     const loadImages = () => {
         const location = locationSelect.value === 'mountain' ? locations.mountain : locations.bosscastle;
-        // const usedIndices = new Set();
-        // let randomIndex;
-        // do {
-        //     randomIndex = Math.floor(Math.random() * imagePaths[location].length);
-        // } while (usedIndices.has(randomIndex));
-        // usedIndices.add(randomIndex);
-        // carouselImage.src = imagePaths[location][randomIndex];
-        carouselImage.src = imagePaths[location][7];  // 7 is the index of the bosscastle image and start point
+        carouselImage.src = imagePaths[location][7]; // 7 is the index of the bosscastle image and start point
     };
 
     exploreButton.addEventListener('click', loadImages);
@@ -135,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (carouselImage.src.includes("bossgate")) {
             showDialogueBubble(`
-                <p>Do you want to fight the f inal Demon Boss?</p>
+                <p>Do you want to fight the final Demon Boss?</p>
                 <button id="fight-boss">Yes</button>
                 <button id="cancel">Not now</button>
             `);
@@ -188,5 +181,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load images when the page is loaded
     loadImages();
 
+    const playMinigame = () => {
+        const rpsMinigame = new bootstrap.Modal(document.getElementById('rps-minigame'));
+        rpsMinigame.show();
+
+        const userResultImg = document.querySelector('.rps-user_result img');
+        const cpuResultImg = document.querySelector('.rps-cpu_result img');
+        const resultText = document.querySelector('.rps-result');
+        const optionImages = document.querySelectorAll('.rps-option_image img');
+
+        const playRound = () => {
+            optionImages.forEach((image) => {
+                image.addEventListener('click', (e) => {
+                    const userChoice = e.target.alt.toLowerCase();
+                    userResultImg.src = e.target.src;
+
+                    const choices = ['rock', 'paper', 'scissors'];
+                    const cpuChoice = choices[Math.floor(Math.random() * 3)];
+                    cpuResultImg.src = `assets/minigame-images/rps-images/${cpuChoice}.png`;
+
+                    let result;
+                    if (userChoice === cpuChoice) {
+                        result = 'Draw';
+                    } else if (
+                        (userChoice === 'rock' && cpuChoice === 'scissors') ||
+                        (userChoice === 'paper' && cpuChoice === 'rock') ||
+                        (userChoice === 'scissors' && cpuChoice === 'paper')
+                    ) {
+                        result = 'You Won';
+                    } else {
+                        result = 'You Lost';
+                    }
+
+                    resultText.textContent = result;
+
+                    setTimeout(() => {
+                        if (result === 'Draw') {
+                            playRound(); // Restart the game if it's a draw
+                        } else {
+                            rpsMinigame.hide();
+                            if (result === 'You Won') {
+                                console.log('Player won the minigame');
+                            } else {
+                                const damage = Math.floor(Math.random() * 6) + 1;
+                                updateHeroHp(damage);
+                                console.log('Player lost the minigame');
+                            }
+                        }
+                    }, 2000);
+                });
+            });
+        };
+
+        playRound();
+    };
+
+    document.getElementById('test-rps-button').addEventListener('click', playMinigame);
 
 });

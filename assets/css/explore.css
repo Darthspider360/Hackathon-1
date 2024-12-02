@@ -163,7 +163,7 @@
     border-radius: 10px;
     display: none;
 }
-S
+
 .states {
     display: flex;
     flex-direction: column;
@@ -173,6 +173,63 @@ S
 
 #heal-button {
     background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.rps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rps-result_field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rps-result_images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rps-option_images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.rps-option_image {
+    cursor: pointer;
+    text-align: center;
+}
+
+.rps-option_image img {
+    width: 50px;
+    height: 50px;
+}
+
+.rps-result {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.close-btn {
+    margin-top: 20px;
+    background-color: red;
     color: white;
     border: none;
     padding: 10px;
