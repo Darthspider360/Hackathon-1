@@ -85,12 +85,12 @@ Using this image we added icons from font awesome that reflected the quest areas
 
 ### LightHouse
 
-
+![lighthouse](assets/Doc/Documents/lighthouse.png)
 ### HTML Validation
-
+![w3c HTML Validation](assets/Doc/Documents/w3chtml.png)
 
 ### CSS Validation
-
+![w3c CSS Validation](assets/Doc/Documents/w3ccss.png)
 
 ## Deployment
 We deployed the site using github and github pages. These are the steps we did:
