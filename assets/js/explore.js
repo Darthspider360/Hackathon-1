@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve hero object from local storage
     const hero = JSON.parse(localStorage.getItem('hero'));
+    const boss = JSON.parse(localStorage.getItem('boss')) || { currentHp: 300 };
 
     const updateHeroHp = (amount) => {
         hero.currentHp = Math.max(0, hero.currentHp - amount);
@@ -36,14 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePaths = [
         [
             'assets/images/bosscastle/1 angel .png',
-            'assets/images/bosscastle/2 bossgate .png',
             'assets/images/bosscastle/3 deathknight .png',
+            'assets/images/bosscastle/2 bossgate .png',
             'assets/images/bosscastle/4 eyeball .png',
-            'assets/images/bosscastle/5 puzzle 1.png',
             'assets/images/bosscastle/6 trap 1.png',
             'assets/images/bosscastle/7 trap 2.png',
+            'assets/images/bosscastle/5 puzzle 1.png',
             'assets/images/bosscastle/8 trap 3.png',
             'assets/images/bosscastle/9 vampire .png',
+            'assets/images/bosscastle/herotomb .png',
         ],
         [
             'assets/images/mt/mt-1-center path-top-cloggy.png',
@@ -63,18 +65,24 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let currentPosition = {
         row: 2,
-        col: 1
+        col: 0
     };
 
     const loadImages = () => {
         const location = locationSelect.value === 'mountain' ? locations.mountain : locations.bosscastle;
-        carouselImage.src = imagePaths[location][7]; // 7 is the index of the bosscastle image and start point
+        carouselImage.src = imagePaths[location][6]; // 6 is the index of the bosscastle image and start point
     };
 
     exploreButton.addEventListener('click', loadImages);
     locationSelect.addEventListener('change', loadImages);
 
     const moveCarousel = (direction) => {
+        if (carouselImage.src.includes("trap")) {
+            const damage = Math.floor(Math.random() * 60) + 1;
+            updateHeroHp(damage);
+            hideDialogueBubble();
+        }
+
         switch (direction) {
             case 'left':
                 if (currentPosition.col > 0) currentPosition.col--;
@@ -120,7 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateCarousel = () => {
-        const index = currentPosition.row * 3 + currentPosition.col;
+        let index = currentPosition.row * 3 + currentPosition.col;
+        if (hero.currentHp == 0) index = 9; // Show hero tomb image if hero is dead
         carouselImage.src = imagePaths[currentLocation][index];
         miniMapCells.forEach((cell, i) => {
             cell.classList.toggle('active', i === index);
@@ -128,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (carouselImage.src.includes("bossgate")) {
             showDialogueBubble(`
-                <p>Do you want to fight the final Demon Boss?</p>
+                <p>Do you want to fight the final Demon Boss? Current HP: ${boss.currentHp}</p>
                 <button id="fight-boss">Yes</button>
                 <button id="cancel">Not now</button>
             `);
@@ -151,9 +160,39 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             document.getElementById('ignore-trap').addEventListener('click', () => {
-                const damage = Math.floor(Math.random() * 12) + 1;
+                const damage = Math.floor(Math.random() * 60) + 1;
                 updateHeroHp(damage);
                 hideDialogueBubble();
+            });
+        } else if (carouselImage.src.includes("angel")) {
+            showDialogueBubble(`
+                <p>Greetings, brave adventurer! I am Sir Fluffington, your celestial guide with a bit of extra fluff. 🌟 Today, you have two trials to choose from:</p>
+                <button id="potion-trial">The Potion Trial</button>
+                <button id="sword-trial">The Sword Trial</button>
+            `);
+
+            document.getElementById('potion-trial').addEventListener('click', () => {
+                hideDialogueBubble();
+                playMinigame(true); // Pass true to indicate it's an angel trial
+            });
+
+            const swordTrialButton = document.getElementById('sword-trial');
+            if (hero.atk >= 3) {
+                swordTrialButton.disabled = true;
+            } else {
+                swordTrialButton.addEventListener('click', () => {
+                    hideDialogueBubble();
+                    playHangmanGame(true); // Pass true to indicate it's an angel trial
+                });
+            }
+        } else if (carouselImage.src.includes("herotomb")) {
+            showDialogueBubble(`
+                <p>After the long journey, our hero had reached to the destiny, R.I.P.</p>
+                <button id="restart-trial">Restart Trial</button>
+            `);
+
+            document.getElementById('restart-trial').addEventListener('click', () => {
+                location.reload();
             });
         } else {
             hideDialogueBubble();
@@ -198,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load images when the page is loaded
     loadImages();
 
-    const playMinigame = () => {
+    const playMinigame = (isAngelTrial = false) => {
         const rpsMinigame = new bootstrap.Modal(document.getElementById('rps-minigame'));
         rpsMinigame.show();
 
@@ -207,53 +246,68 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultText = document.querySelector('.rps-result');
         const optionImages = document.querySelectorAll('.rps-option_image img');
 
-        const playRound = () => {
-            optionImages.forEach((image) => {
-                image.addEventListener('click', (e) => {
-                    const userChoice = e.target.alt.toLowerCase();
-                    userResultImg.src = e.target.src;
-
-                    const choices = ['rock', 'paper', 'scissors'];
-                    const cpuChoice = choices[Math.floor(Math.random() * 3)];
-                    cpuResultImg.src = `assets/minigame-images/rps-images/${cpuChoice}.png`;
-
-                    let result;
-                    if (userChoice === cpuChoice) {
-                        result = 'Draw';
-                    } else if (
-                        (userChoice === 'rock' && cpuChoice === 'scissors') ||
-                        (userChoice === 'paper' && cpuChoice === 'rock') ||
-                        (userChoice === 'scissors' && cpuChoice === 'paper')
-                    ) {
-                        result = 'You Won';
-                    } else {
-                        result = 'You Lost';
-                    }
-
-                    resultText.textContent = result;
-
-                    setTimeout(() => {
-                        if (result === 'Draw') {
-                            playRound(); // Restart the game if it's a draw
-                        } else {
-                            rpsMinigame.hide();
-                            if (result === 'You Won') {
-                                console.log('Player won the minigame');
-                            } else {
-                                const damage = Math.floor(Math.random() * 6) + 1;
-                                updateHeroHp(damage);
-                                console.log('Player lost the minigame');
-                            }
-                        }
-                    }, 2000);
-                });
-            });
+        const resetGame = () => {
+            userResultImg.src = 'assets/minigame-images/rps-images/rock.png';
+            cpuResultImg.src = 'assets/minigame-images/rps-images/rock.png';
+            resultText.textContent = 'Play';
         };
 
-        playRound();
+        const playRound = (userChoice) => {
+            const choices = ['rock', 'paper', 'scissors'];
+            const cpuChoice = choices[Math.floor(Math.random() * 3)];
+            cpuResultImg.src = `assets/minigame-images/rps-images/${cpuChoice}.png`;
+
+            let result;
+            if (userChoice === cpuChoice) {
+                result = 'Draw';
+            } else if (
+                (userChoice === 'rock' && cpuChoice === 'scissors') ||
+                (userChoice === 'paper' && cpuChoice === 'rock') ||
+                (userChoice === 'scissors' && cpuChoice === 'paper')
+            ) {
+                result = 'You Won';
+            } else {
+                result = 'You Lost';
+            }
+
+            resultText.textContent = result;
+
+            if (result === 'Draw') {
+                resultText.textContent = 'Play Again';
+            } else {
+                setTimeout(() => {
+                    if (result === 'You Won') {
+                        console.log('Player won the minigame');
+                        if (isAngelTrial) {
+                            hero.potion += 1;
+                            updateHeroPotion();
+                            console.log('You won a potion!');
+                        }
+                    } else {
+                        console.log('Player lost the minigame');
+                        if (!isAngelTrial) {
+                            const damage = Math.floor(Math.random() * 24) + 1;
+                            updateHeroHp(damage);
+                        }
+                    }
+                    rpsMinigame.hide();
+                    resetGame();
+                }, 2000); // Delay hiding the modal to allow result display
+            }
+        };
+
+        optionImages.forEach((image) => {
+            image.addEventListener('click', (e) => {
+                const userChoice = e.target.alt.toLowerCase();
+                userResultImg.src = e.target.src;
+                playRound(userChoice);
+            });
+        });
+
+        resetGame(); // Reset the game when the modal is shown
     };
 
-    const playHangmanGame = () => {
+    const playHangmanGame = (isAngelTrial = false) => {
         const hangmanMinigame = new bootstrap.Modal(document.getElementById('hangman-minigame'));
         hangmanMinigame.show();
 
@@ -264,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const resetGame = () => {
             randomNum = Math.floor(Math.random() * 100); // Generate a new random number
-            chance = 5; // Reset chances to 5
+            chance = 8; // Reset chances to 5
             input.disabled = false; // Enable input field
             remainChances.textContent = chance; // Update chances display
             guess.textContent = ""; // Clear guess display
@@ -274,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         let randomNum = Math.floor(Math.random() * 100);
-        let chance = 5; // Set initial chances to 5
+        let chance = 8; // Set initial chances to 5
 
         checkButton.addEventListener("click", () => {
             if (input.disabled) {
@@ -288,6 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (inputValue == randomNum) {
                 [guess.textContent, input.disabled] = ["Congrats! You found the number.", true];
                 [checkButton.textContent, guess.style.color] = ["Replay", "#27ae60"];
+                if (isAngelTrial && hero.atk < 3) {
+                    hero.atk += 1;
+                    updateHeroAtk();
+                    console.log('Your attack increased!');
+                    if (hero.atk >= 3) {
+                        document.getElementById('sword-trial').disabled = true;
+                    }
+                }
             } else if (inputValue > randomNum && inputValue < 100) {
                 [guess.textContent, remainChances.textContent] = ["Your guess is high", chance];
                 guess.style.color = "#333";
@@ -304,6 +366,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 [guess.textContent, guess.style.color] = ["You lost the game", "#e74c3c"];
             }
         });
+
+        resetGame(); // Reset the game when the modal is shown
     };
 
     document.getElementById('test-rps-button').addEventListener('click', playMinigame);
