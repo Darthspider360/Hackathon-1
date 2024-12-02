@@ -35,14 +35,8 @@
                     <button class="carousel-button" id="carousel-down">&#8659;</button>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-primary" id="explore-button">Explore</button>
-                <select id="location-select" class="form-select ms-2" style="width: auto;">
-                    <option value="boasscastle">Boss Castle</option>
-                    <option value="mountain">Moutain</option>
-                </select>
-            </div>
-            <div class="d-flex justify-content-center mt-3">
+           
+            <div class="d-flex justify-content-center mt-1">
                 <div class="mini-map">
                     <div class="mini-map-grid">
                         <div class="mini-map-cell" id="cell-0-0"></div>
@@ -56,6 +50,19 @@
                         <div class="mini-map-cell" id="cell-2-2"></div>
                     </div>
                 </div>
+                <div class="ms-3 states">
+                    <div id="hero-hp">HP: 100</div>
+                    <div id="hero-atk">ATK: 1</div>
+                    <span id="hero-potion">Potion: 20</span>
+                    <button id="heal-button">Heal</button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-primary" id="explore-button">Explore</button>
+                <select id="location-select" class="form-select ms-2" style="width: auto;">
+                    <option value="boasscastle">Boss Castle</option>
+                    <option value="mountain">Moutain</option>
+                </select>
             </div>
         </section> 
     </main>
@@ -76,6 +83,9 @@
     <script src="assets/js/script.js"></script>
     <!--field explore minimap and battle js-->
     <script src="assets/js/explore.js"></script>
+    <script src="assets/js/battle.js"></script>
+    <!--minigame-->
+    <script src="assets/js/minigame.js"></script>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/128240b0e7.js" crossorigin="anonymous"></script>
 

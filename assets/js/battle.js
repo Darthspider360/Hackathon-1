@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         pow: 1, 
     };
 
+    // Save hero object to local storage
+    localStorage.setItem('hero', JSON.stringify(hero));
+
     hero.pow = hero.atk;
 
     const boss = {
@@ -23,15 +26,40 @@ document.addEventListener('DOMContentLoaded', () => {
         img: 'assets/images/battle/testboss.png'
     };
 
-    const minion = {
-        hp: 100,
-        currentHp: 100,
+    const vampire = {
+        hp: 200,
+        currentHp: 200,
         atk: 2,
         def: 1,
-        img: 'assets/images/battle/minion.png'
+        img: 'assets/images/bosscastle/vampire.png'
     };
 
-    const enemies = { boss, minion };
+    const deathknight = {
+        hp: 150,
+        currentHp: 150,
+        atk: 2,
+        def: 1,
+        img: 'assets/images/bosscastle/deathknight.png'
+    };
+
+    const eyeball = {
+        hp: 100,
+        currentHp: 100,
+        atk: 1,
+        def: 1,
+        img: 'assets/images/bosscastle/eyeball.png'
+    };
+
+    const angel = {
+        hp: 500,
+        currentHp: 500,
+        atk: 3,
+        def: 1,
+        img: 'assets/images/bosscastle/angel.png'
+    };
+
+
+    const enemies = { boss, vampire, deathknight, eyeball, angel };
 
     const heroHpBar = document.getElementById('heroHpBar');
     const heroReducedHpBar = document.getElementById('heroReducedHpBar');
