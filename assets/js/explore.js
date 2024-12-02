@@ -227,9 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (carouselImage.src.includes("angel")) {
             showDialogueBubble(`
                 <p>Greetings, brave adventurer! I am Sir Fluffington, your celestial guide with a bit of extra fluff. 🌟 Today, you have three trials to choose from:</p>
-                <button id="potion-trial">The Potion Trial</button>
-                <button id="sword-trial">The Sword Trial</button>
-                <button id="defeat-angel">Defeat Angel</button>
+                <button id="potion-trial">Fancy some pints eh?</button>
+                <button id="sword-trial">Fancy get tougher?</button>
+                <button id="defeat-angel">Wanna Challenge me?</button>
             `);
 
             document.getElementById('potion-trial').addEventListener('click', () => {
