@@ -66,13 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let currentPosition = {
         row: 2,
-        col: 0
+        col: 0,
     };
+    
 
     const loadImages = () => {
         const location = locationSelect.value === 'mountain' ? locations.mountain : locations.bosscastle;
         carouselImage.src = imagePaths[location][6]; // 6 is the index of the bosscastle image and start point
+         
     };
+
+    // Load images when the page is loaded
+    loadImages();
+
+    // Save currentPosition to local storage when the page loads
+    localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
 
     exploreButton.addEventListener('click', loadImages);
     locationSelect.addEventListener('change', loadImages);
@@ -99,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
         updateCarousel();
+        // Save currentPosition to local storage after moving
+        localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
     };
 
     const createDialogueBubble = () => {
@@ -295,8 +305,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedPosition = JSON.parse(localStorage.getItem('currentPosition'));
     if (savedPosition) {
         currentPosition = savedPosition;
-        updateCarousel();
     }
+    updateCarousel(); // Ensure the carousel is updated with the correct initial position
 
     document.getElementById('carousel-left').addEventListener('click', () => moveCarousel('left'));
     document.getElementById('carousel-right').addEventListener('click', () => moveCarousel('right'));
@@ -333,8 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Load images when the page is loaded
-    loadImages();
+    
 
     const playMinigame = (isAngelTrial = false) => {
         const rpsMinigame = new bootstrap.Modal(document.getElementById('rps-minigame'));
