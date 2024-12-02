@@ -1,5 +1,5 @@
 # **Legend of the Eternal Empire**
-A web based roleplay game where you adventure to save the lands from being corrupted by the Eternal Empire! Testing your fighting skill, logica knowledge and luck!
+A web based roleplay game where you adventure to save the lands from being corrupted by the Eternal Empire! Testing your fighting skill, logical knowledge and luck!
 <br>
 
 ![Screenshot of mockup]()
@@ -68,6 +68,15 @@ Using this image we added icons from font awesome that reflected the quest areas
 
 ![A screenshot of the icons on the map](assets/images/readMe/icons.png)
 
+#### Minigames
+
+Both minigames were acquired from the internet and then amended for styling purposes.
+[Coding Nepal](https://www.codingnepalweb.com/best-javascript-games-for-beginners/)
+
+#### Combat System
+
+The combat system was mainly hand-coded but the code was optimised and cleaned up through chatGPT.
+
 
 ## Responsivity 
 
@@ -85,12 +94,16 @@ Using this image we added icons from font awesome that reflected the quest areas
 
 ### LightHouse
 
+## Code Validation
 
 ### HTML Validation
-
+[All html validations can be found here](assets/images/readMe/validations/html)
 
 ### CSS Validation
+[All CSS validations can be found here](assets/images/readMe/validations/css)
 
+### JS Validation
+[All JS validations can be found here](assets/images/readMe/validations/js)
 
 ## Deployment
 We deployed the site using github and github pages. These are the steps we did:
