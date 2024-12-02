@@ -162,6 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (justFinishedBattle) {
             justFinishedBattle = false;
             localStorage.setItem('justFinishedBattle', 'false');
+            const savedPosition = JSON.parse(localStorage.getItem('currentPosition'));
+            if (savedPosition) {
+                currentPosition = savedPosition;
+            }
             const savedIndex = localStorage.getItem('currentImageIndex');
             if (savedIndex !== null) {
                 index = parseInt(savedIndex, 10);
@@ -170,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cell.classList.toggle('active', i === index);
                 });
             }
+            loadImages(); // Call loadImages() when returning from battle
             return;
         }
 
@@ -187,31 +192,19 @@ document.addEventListener('DOMContentLoaded', () => {
             `);
 
             document.getElementById('fight-boss').addEventListener('click', () => {
-                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
-                localStorage.setItem('currentEnemy', 'boss');
-                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
-                localStorage.setItem('currentImageIndex', index);
+                saveBattleState('boss');
                 window.location.href = 'battle.html';
             });
 
             document.getElementById('cancel').addEventListener('click', hideDialogueBubble);
         } else if (carouselImage.src.includes("deathknight")) {
-            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
-            localStorage.setItem('currentEnemy', 'deathknight');
-            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
-            localStorage.setItem('currentImageIndex', index);
+            saveBattleState('deathknight');
             window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("eyeball")) {
-            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
-            localStorage.setItem('currentEnemy', 'eyeball');
-            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
-            localStorage.setItem('currentImageIndex', index);
+            saveBattleState('eyeball');
             window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("vampire")) {
-            localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
-            localStorage.setItem('currentEnemy', 'vampire');
-            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
-            localStorage.setItem('currentImageIndex', index);
+            saveBattleState('vampire');
             window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("trap")) {
             showDialogueBubble(`
@@ -254,9 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             document.getElementById('defeat-angel').addEventListener('click', () => {
-                localStorage.setItem('currentEnemy', 'angel');
-                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
-                localStorage.setItem('currentImageIndex', index);
+                saveBattleState('angel');
                 window.location.href = 'battle.html';
             });
 
@@ -302,12 +293,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const saveBattleState = (enemy) => {
+        localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+        localStorage.setItem('currentEnemy', enemy);
+        localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+        localStorage.setItem('currentImageIndex', currentPosition.row * 3 + currentPosition.col);
+    };
+
     const savedPosition = JSON.parse(localStorage.getItem('currentPosition'));
     if (savedPosition) {
         currentPosition = savedPosition;
     }
-    updateCarousel(); // Ensure the carousel is updated with the correct initial position
-
+     
     document.getElementById('carousel-left').addEventListener('click', () => moveCarousel('left'));
     document.getElementById('carousel-right').addEventListener('click', () => moveCarousel('right'));
     document.getElementById('carousel-up').addEventListener('click', () => moveCarousel('up'));
