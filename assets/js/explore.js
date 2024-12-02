@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'assets/images/bosscastle/5 puzzle 1.png',
             'assets/images/bosscastle/8 trap 3.png',
             'assets/images/bosscastle/9 vampire .png',
-            'assets/images/bosscastle/herotomb .png',
+            'assets/images/bosscastle/10 herotomb .png',
         ],
         [
             'assets/images/mt/mt-1-center path-top-cloggy.png',
@@ -127,6 +127,17 @@ document.addEventListener('DOMContentLoaded', () => {
         dialogueBubble.style.display = 'none';
     };
 
+    let justFinishedBattle = localStorage.getItem('justFinishedBattle') === 'true';
+
+    const defaultHero = {
+        hp: 100,
+        currentHp: 100,
+        atk: 1,
+        def: 1,
+        potion: 3,
+        pow: 1,
+    };
+
     const updateCarousel = () => {
         let index = currentPosition.row * 3 + currentPosition.col;
         if (hero.currentHp == 0) index = 9; // Show hero tomb image if hero is dead
@@ -134,6 +145,20 @@ document.addEventListener('DOMContentLoaded', () => {
         miniMapCells.forEach((cell, i) => {
             cell.classList.toggle('active', i === index);
         });
+
+        if (justFinishedBattle) {
+            justFinishedBattle = false;
+            localStorage.setItem('justFinishedBattle', 'false');
+            const savedIndex = localStorage.getItem('currentImageIndex');
+            if (savedIndex !== null) {
+                index = parseInt(savedIndex, 10);
+                carouselImage.src = imagePaths[currentLocation][index];
+                miniMapCells.forEach((cell, i) => {
+                    cell.classList.toggle('active', i === index);
+                });
+            }
+            return;
+        }
 
         if (carouselImage.src.includes("bossgate")) {
             showDialogueBubble(`
@@ -143,10 +168,18 @@ document.addEventListener('DOMContentLoaded', () => {
             `);
 
             document.getElementById('fight-boss').addEventListener('click', () => {
-                window.location.href = 'battle.html?currentEnemy=boss';
+                localStorage.setItem('currentEnemy', 'boss');
+                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+                localStorage.setItem('currentImageIndex', index);
+                window.location.href = 'battle.html';
             });
 
             document.getElementById('cancel').addEventListener('click', hideDialogueBubble);
+        } else if (carouselImage.src.includes("deathknight")) {
+            localStorage.setItem('currentEnemy', 'deathknight');
+            localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+            localStorage.setItem('currentImageIndex', index);
+            window.location.href = 'battle.html';
         } else if (carouselImage.src.includes("trap")) {
             showDialogueBubble(`
                 <p>Oops, you encountered a trap!</p>
@@ -166,9 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else if (carouselImage.src.includes("angel")) {
             showDialogueBubble(`
-                <p>Greetings, brave adventurer! I am Sir Fluffington, your celestial guide with a bit of extra fluff. 🌟 Today, you have two trials to choose from:</p>
+                <p>Greetings, brave adventurer! I am Sir Fluffington, your celestial guide with a bit of extra fluff. 🌟 Today, you have three trials to choose from:</p>
                 <button id="potion-trial">The Potion Trial</button>
                 <button id="sword-trial">The Sword Trial</button>
+                <button id="defeat-angel">Defeat Angel</button>
             `);
 
             document.getElementById('potion-trial').addEventListener('click', () => {
@@ -185,6 +219,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     playHangmanGame(true); // Pass true to indicate it's an angel trial
                 });
             }
+
+            document.getElementById('defeat-angel').addEventListener('click', () => {
+                localStorage.setItem('currentEnemy', 'angel');
+                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
+                localStorage.setItem('currentImageIndex', index);
+                window.location.href = 'battle.html';
+            });
+
+            // Refill hero's HP to full when meeting the angel
+            hero.currentHp = hero.hp;
+            updateHeroHp(0);
         } else if (carouselImage.src.includes("herotomb")) {
             showDialogueBubble(`
                 <p>After the long journey, our hero had reached to the destiny, R.I.P.</p>
@@ -192,12 +237,23 @@ document.addEventListener('DOMContentLoaded', () => {
             `);
 
             document.getElementById('restart-trial').addEventListener('click', () => {
+                hero.potion = defaultHero.potion;
+                hero.currentHp = hero.hp;
+                currentPosition = { row: 2, col: 0 }; // Set hero to starting position
+                localStorage.setItem('hero', JSON.stringify(hero));
+                localStorage.setItem('currentPosition', JSON.stringify(currentPosition));
                 location.reload();
             });
         } else {
             hideDialogueBubble();
         }
     };
+
+    const savedPosition = JSON.parse(localStorage.getItem('currentPosition'));
+    if (savedPosition) {
+        currentPosition = savedPosition;
+        updateCarousel();
+    }
 
     document.getElementById('carousel-left').addEventListener('click', () => moveCarousel('left'));
     document.getElementById('carousel-right').addEventListener('click', () => moveCarousel('right'));

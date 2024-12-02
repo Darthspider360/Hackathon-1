@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 100,
         atk: 1,
         def: 1,
-        potion: 20,
+        potion: 3,
         pow: 1, 
     };
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 200,
         atk: 2,
         def: 1,
-        img: 'assets/images/bosscastle/vampire.png',
+        img: 'assets/images/bosscastle/9 vampire .png',
         flee: 0.3,
     };
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 150,
         atk: 2,
         def: 1,
-        img: 'assets/images/bosscastle/deathknight.png',
+        img: 'assets/images/bosscastle/3 deathknight .png',
         flee: 0.5,
     };
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 100,
         atk: 1,
         def: 1,
-        img: 'assets/images/bosscastle/eyeball.png',
+        img: 'assets/images/bosscastle/4 eyeball .png',
         flee: 0.7,
     };
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentHp: 500,
         atk: 3,
         def: 1,
-        img: 'assets/images/bosscastle/angel.png',
+        img: 'assets/images/bosscastle/1 angel .png',
         flee: 0.8,
     };
 
@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const enemyImage = document.querySelector('#battle img[alt="Enemy"]');
     const enemyTypeSelect = document.getElementById('enemyType');
 
-    let currentEnemy;
+    const currentEnemyType = localStorage.getItem('currentEnemy') || 'boss';
+    let currentEnemy = enemies[currentEnemyType];
 
     const updateHpBar = () => {
         const hpPercentage = (hero.currentHp / hero.hp) * 100;
@@ -95,8 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateEnemyImage = () => {
-        const selectedEnemy = enemyTypeSelect.value;
-        currentEnemy = enemies[selectedEnemy];
         enemyImage.src = currentEnemy.img;
         updateEnemyHpBar(currentEnemy.currentHp); // Ensure the correct parameter is passed
     };
@@ -174,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reduce enemy HP by heroAtk and hero HP by enemyAtk
         reduceEnemyHp(heroAtk);
         reduceHp(enemyAtk);
+        endBattle();
     });
 
     const defButton = document.getElementById('defButton');
@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reduce hero HP by the remaining enemy attack after block
         enemyAtk = Math.max(0, enemyAtk - heroDef);
         reduceHp(enemyAtk);
+        endBattle();
     });
 
     const healButton = document.getElementById('healButton');
@@ -254,6 +255,24 @@ document.addEventListener('DOMContentLoaded', () => {
             showBattleMessage(`Flee failed! You took ${damage} damage.`);
         }
     });
+
+    const endBattle = () => {
+        if (currentEnemy.currentHp === 0) {
+            showBattleMessage('You defeated the enemy!');
+            setTimeout(() => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                localStorage.setItem('justFinishedBattle', 'true');
+                window.location.href = 'explore.html';
+            }, 2000);
+        } else if (hero.currentHp === 0) {
+            showBattleMessage('You were defeated!');
+            setTimeout(() => {
+                localStorage.setItem('hero', JSON.stringify(hero)); // Save hero state
+                localStorage.setItem('justFinishedBattle', 'true');
+                window.location.href = 'explore.html';
+            }, 2000);
+        }
+    };
 
     enemyTypeSelect.addEventListener('change', updateEnemyImage);
 
